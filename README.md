@@ -48,5 +48,5 @@ src/
 
 ## Dupla
 
-- Nome 1
-- Nome 2
+- Christiano Gonçalves Araujo
+- Larissa Fineli
