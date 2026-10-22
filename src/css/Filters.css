@@ -1,0 +1,49 @@
+.filters {
+  margin: 1rem 0;
+}
+
+.type-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+.type-buttons button {
+  --type-color: #555;
+  border: 2px solid var(--type-color);
+  background: transparent;
+  color: var(--text);
+  border-radius: 999px;
+  padding: 0.25rem 0.8rem;
+  font-size: 0.85rem;
+  transition: all 0.2s;
+}
+
+.type-buttons button:hover,
+.type-buttons button.active {
+  background: var(--type-color);
+  color: #fff;
+}
+
+.filters-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 0.8rem;
+}
+
+.filters-row select {
+  padding: 0.35rem;
+  border-radius: 8px;
+  background: var(--surface);
+  color: var(--text);
+}
+
+.random-btn {
+  background: var(--accent);
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 0.45rem 0.9rem;
+}

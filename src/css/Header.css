@@ -1,0 +1,36 @@
+.header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  padding: 0.8rem 1.5rem;
+  background: linear-gradient(90deg, #e3350d, #ff7a59);
+  color: #fff;
+  box-shadow: var(--shadow);
+}
+
+.header h1 {
+  margin: 0;
+  letter-spacing: 1px;
+}
+
+.header nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+.header button {
+  background: rgba(255, 255, 255, 0.2);
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 0.45rem 0.9rem;
+  transition: background 0.2s;
+}
+
+.header button:hover,
+.header button.active {
+  background: rgba(255, 255, 255, 0.45);
+}

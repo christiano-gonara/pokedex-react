@@ -1,0 +1,75 @@
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  z-index: 10;
+}
+
+.modal {
+  position: relative;
+  width: 100%;
+  max-width: 480px;
+  max-height: 90vh;
+  overflow-y: auto;
+  background: var(--surface);
+  border-top: 8px solid var(--card-color);
+  border-radius: 16px;
+  padding: 1.5rem;
+  box-shadow: var(--shadow);
+  animation: pop 0.2s ease-out;
+}
+
+.modal-close {
+  position: absolute;
+  top: 0.6rem;
+  right: 0.8rem;
+  background: none;
+  border: none;
+  font-size: 1.2rem;
+  color: var(--text);
+}
+
+.modal-header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.modal-header img {
+  width: 140px;
+  height: 140px;
+  object-fit: contain;
+}
+
+.modal-header h2 {
+  margin: 0.2rem 0 0.5rem;
+}
+
+.modal-header .card-id {
+  position: static;
+}
+
+.modal-header .card-types {
+  justify-content: flex-start;
+}
+
+.stat-total {
+  text-align: right;
+  font-weight: 700;
+  margin: 0.5rem 0 0;
+}
+
+.modal-owners {
+  margin-bottom: 0;
+}
+
+@keyframes pop {
+  from {
+    transform: scale(0.9);
+    opacity: 0;
+  }
+}

@@ -1,0 +1,45 @@
+.trainer-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1rem;
+}
+
+.trainer-card {
+  background: var(--surface);
+  border-radius: 14px;
+  padding: 1rem;
+  box-shadow: var(--shadow);
+}
+
+.trainer-card h3 {
+  margin: 0;
+}
+
+.trainer-pokemon {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+.trainer-pokemon button {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 78px;
+  background: var(--bg);
+  color: var(--text);
+  border: none;
+  border-radius: 10px;
+  padding: 0.3rem;
+  font-size: 0.7rem;
+}
+
+.trainer-pokemon button:hover {
+  outline: 2px solid var(--accent);
+}
+
+.trainer-pokemon img {
+  width: 56px;
+  height: 56px;
+  object-fit: contain;
+}
