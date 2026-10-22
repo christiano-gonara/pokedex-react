@@ -1,5 +1,10 @@
 # 🎮 Pokédex React + Vite
 
+## Dupla
+
+- Christiano Gonçalves Araujo
+- Larissa Fineli
+
 Pokédex interativa feita com **React + Vite** (Atividade 03 — Desenvolvimento e Integração de Aplicações Web).
 
 ## Funcionalidades
@@ -45,8 +50,3 @@ src/
 ├── index.css
 └── utils.js         # cores dos tipos, rótulos e URL das imagens
 ```
-
-## Dupla
-
-- Christiano Gonçalves Araujo
-- Larissa Fineli
