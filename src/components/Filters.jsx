@@ -1,3 +1,4 @@
+import { Dices } from 'lucide-react'
 import '../css/Filters.css'
 import { TYPE_COLORS } from '../utils'
 
@@ -42,7 +43,7 @@ function Filters({ types, selectedType, onTypeChange, sortBy, onSortChange, onRa
           </select>
         </label>
         <button className="random-btn" onClick={onRandom}>
-          🎲 Aleatório
+          <Dices size={16} /> Aleatório
         </button>
       </div>
     </div>

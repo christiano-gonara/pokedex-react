@@ -1,3 +1,4 @@
+import { Award, User } from 'lucide-react'
 import '../css/TrainerList.css'
 import { imageUrl } from '../utils'
 
@@ -8,8 +9,10 @@ function TrainerList({ trainers, pokemon, onSelectPokemon }) {
     <section className="trainer-list">
       {trainers.map((trainer) => (
         <article key={trainer.id} className="trainer-card">
-          <h3>🧑‍🚀 {trainer.name}</h3>
-          <p>🏅 Insígnias: {trainer.badges}</p>
+          <h3><User size={18} /> {trainer.name}</h3>
+          <p>
+            <Award size={16} /> Insígnias: {trainer.badges}
+          </p>
           <div className="trainer-pokemon">
             {trainer.pokemonIds.map((id) => (
               <button key={id} title={byId[id]?.name} onClick={() => onSelectPokemon(byId[id])}>

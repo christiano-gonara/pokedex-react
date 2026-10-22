@@ -1,4 +1,4 @@
-# 🎮 Pokédex React + Vite
+# Pokédex React + Vite
 
 ## Dupla
 
@@ -33,6 +33,8 @@ Deploy: https://christiano-gonara.github.io/pokedex-react/
 Os dados estão em `src/data/pokedex-data.json` (tipos, Pokémon e treinadores).
 
 ## Imagens
+
+Ícones: [Lucide](https://lucide.dev) (`lucide-react`).
 
 Imagens carregadas da [PokéAPI sprites](https://github.com/PokeAPI/sprites) (`official-artwork/{id}.png`).
 

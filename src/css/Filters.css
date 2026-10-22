@@ -47,3 +47,9 @@
   border-radius: 8px;
   padding: 0.45rem 0.9rem;
 }
+
+.random-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+}

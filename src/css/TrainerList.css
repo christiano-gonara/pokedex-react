@@ -43,3 +43,10 @@
   height: 56px;
   object-fit: contain;
 }
+
+.trainer-card h3,
+.trainer-card p {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}

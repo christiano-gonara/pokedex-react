@@ -1,3 +1,4 @@
+import { Moon, PawPrint, Star, Sun, Users } from 'lucide-react'
 import '../css/Header.css'
 
 function Header({ view, onViewChange, darkMode, onToggleDark, favoritesCount }) {
@@ -6,16 +7,16 @@ function Header({ view, onViewChange, darkMode, onToggleDark, favoritesCount }) 
       <h1>Pokédex</h1>
       <nav>
         <button className={view === 'pokedex' ? 'active' : ''} onClick={() => onViewChange('pokedex')}>
-          🐾 Pokémon
+          <PawPrint size={16} /> Pokémon
         </button>
         <button className={view === 'trainers' ? 'active' : ''} onClick={() => onViewChange('trainers')}>
-          🧑‍🚀 Treinadores
+          <Users size={16} /> Treinadores
         </button>
         <button className={view === 'favorites' ? 'active' : ''} onClick={() => onViewChange('favorites')}>
-          ⭐ Favoritos ({favoritesCount})
+          <Star size={16} /> Favoritos ({favoritesCount})
         </button>
         <button onClick={onToggleDark} aria-label="Alternar tema">
-          {darkMode ? '☀️' : '🌙'}
+          {darkMode ? <Sun size={16} /> : <Moon size={16} />}
         </button>
       </nav>
     </header>

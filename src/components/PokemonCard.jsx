@@ -1,3 +1,4 @@
+import { Star } from 'lucide-react'
 import '../css/PokemonCard.css'
 import TypeBadge from './TypeBadge'
 import { STAT_LABELS, TYPE_COLORS, formatId, imageUrl } from '../utils'
@@ -15,7 +16,7 @@ function PokemonCard({ pokemon, isFavorite, onSelect, onToggleFavorite }) {
           onToggleFavorite(pokemon.id)
         }}
       >
-        {isFavorite ? '⭐' : '☆'}
+        <Star size={20} fill={isFavorite ? 'currentColor' : 'none'} />
       </button>
       <span className="card-id">{formatId(pokemon.id)}</span>
       <img src={imageUrl(pokemon.id)} alt={pokemon.name} loading="lazy" />

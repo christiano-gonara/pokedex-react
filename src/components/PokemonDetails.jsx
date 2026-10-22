@@ -1,4 +1,5 @@
 import { useEffect } from 'react'
+import { Users, X } from 'lucide-react'
 import '../css/PokemonDetails.css'
 import StatBar from './StatBar'
 import TypeBadge from './TypeBadge'
@@ -19,7 +20,7 @@ function PokemonDetails({ pokemon, trainers, onClose }) {
     <div className="modal-overlay" onClick={onClose}>
       <div className="modal" style={{ '--card-color': color }} onClick={(e) => e.stopPropagation()}>
         <button className="modal-close" onClick={onClose} aria-label="Fechar">
-          ✕
+          <X size={20} />
         </button>
         <div className="modal-header">
           <img src={imageUrl(pokemon.id)} alt={pokemon.name} />
@@ -41,7 +42,7 @@ function PokemonDetails({ pokemon, trainers, onClose }) {
         </div>
         {owners.length > 0 && (
           <p className="modal-owners">
-            🧑‍🚀 Treinadores: <strong>{owners.map((t) => t.name).join(', ')}</strong>
+            <Users size={16} /> Treinadores: <strong>{owners.map((t) => t.name).join(', ')}</strong>
           </p>
         )}
       </div>
