@@ -2,7 +2,7 @@ import { SearchX } from 'lucide-react'
 import '../css/PokemonList.css'
 import PokemonCard from './PokemonCard'
 
-function PokemonList({ pokemon, favorites, teamIds, onSelect, onToggleFavorite, onToggleTeam }) {
+function PokemonList({ pokemon, favorites, onSelect, onToggleFavorite }) {
   if (pokemon.length === 0) {
     return (
       <div className="empty">
@@ -20,10 +20,8 @@ function PokemonList({ pokemon, favorites, teamIds, onSelect, onToggleFavorite, 
           key={p.id}
           pokemon={p}
           isFavorite={favorites.includes(p.id)}
-          inTeam={teamIds.includes(p.id)}
           onSelect={onSelect}
           onToggleFavorite={onToggleFavorite}
-          onToggleTeam={onToggleTeam}
         />
       ))}
     </section>

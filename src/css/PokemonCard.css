@@ -83,11 +83,6 @@
   color: #f5b301;
 }
 
-.card-action.team.active {
-  background: var(--card-color);
-  color: #fff;
-}
-
 .card-body {
   padding: 0.9rem 1rem 1.1rem;
 }

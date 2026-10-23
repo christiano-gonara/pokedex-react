@@ -45,8 +45,6 @@ export const imageUrl = (id) =>
 
 export const totalStats = (pokemon) => Object.values(pokemon.stats).reduce((a, b) => a + b, 0)
 
-export const TEAM_SIZE = 6
-
 export function difficultyOf(team) {
   if (team.length === 0) return 'Fácil'
   const avg = team.reduce((sum, p) => sum + totalStats(p), 0) / team.length

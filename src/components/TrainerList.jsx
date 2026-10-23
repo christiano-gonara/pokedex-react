@@ -1,4 +1,4 @@
-import { Award, Swords, Trophy } from 'lucide-react'
+import { Award } from 'lucide-react'
 import '../css/TrainerList.css'
 import TypeBadge from './TypeBadge'
 import { TYPE_COLORS, difficultyOf, imageUrl, totalStats } from '../utils'
@@ -9,7 +9,7 @@ function mainType(team) {
   return Object.entries(counts).sort((a, b) => b[1] - a[1])[0]?.[0] ?? 'Typeless'
 }
 
-function TrainerCard({ trainer, team, defeated, onSelectPokemon, onChallenge }) {
+function TrainerCard({ trainer, team, onSelectPokemon }) {
   const type = mainType(team)
   const ace = [...team].sort((a, b) => totalStats(b) - totalStats(a))[0]
   const power = team.reduce((sum, p) => sum + totalStats(p), 0)
@@ -19,11 +19,6 @@ function TrainerCard({ trainer, team, defeated, onSelectPokemon, onChallenge }) 
     <article className="trainer-card" style={{ '--card-color': TYPE_COLORS[type] }}>
       <div className="trainer-banner">
         {ace && <img className="trainer-ace" src={imageUrl(ace.id)} alt="" aria-hidden="true" />}
-        {defeated && (
-          <span className="defeated-tag">
-            <Trophy size={13} /> Vencido
-          </span>
-        )}
         <span className="avatar">{trainer.name.charAt(0)}</span>
         <h3>{trainer.name}</h3>
         <span className="badges">
@@ -56,16 +51,12 @@ function TrainerCard({ trainer, team, defeated, onSelectPokemon, onChallenge }) 
             </button>
           ))}
         </div>
-
-        <button className="challenge-btn" onClick={() => onChallenge(trainer)}>
-          <Swords size={16} /> {defeated ? 'Desafiar de novo' : 'Desafiar'}
-        </button>
       </div>
     </article>
   )
 }
 
-function TrainerList({ trainers, pokemon, defeated, onSelectPokemon, onChallenge }) {
+function TrainerList({ trainers, pokemon, onSelectPokemon }) {
   const byId = Object.fromEntries(pokemon.map((p) => [p.id, p]))
 
   return (
@@ -75,9 +66,7 @@ function TrainerList({ trainers, pokemon, defeated, onSelectPokemon, onChallenge
           key={trainer.id}
           trainer={trainer}
           team={trainer.pokemonIds.map((id) => byId[id]).filter(Boolean)}
-          defeated={defeated.includes(trainer.id)}
           onSelectPokemon={onSelectPokemon}
-          onChallenge={onChallenge}
         />
       ))}
     </section>

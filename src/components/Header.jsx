@@ -1,15 +1,14 @@
-import { Moon, PawPrint, Star, Sun, Swords, Users } from 'lucide-react'
+import { Moon, PawPrint, Star, Sun, Users } from 'lucide-react'
 import '../css/Header.css'
 import Logo from './Logo'
 
 const TABS = [
   { id: 'pokedex', label: 'Pokémon', icon: PawPrint },
-  { id: 'team', label: 'Meu time', icon: Swords },
   { id: 'trainers', label: 'Treinadores', icon: Users },
   { id: 'favorites', label: 'Favoritos', icon: Star },
 ]
 
-function Header({ view, onViewChange, darkMode, onToggleDark, favoritesCount, teamCount }) {
+function Header({ view, onViewChange, darkMode, onToggleDark, favoritesCount }) {
   return (
     <header className="header">
       <div className="header-inner">
@@ -23,7 +22,6 @@ function Header({ view, onViewChange, darkMode, onToggleDark, favoritesCount, te
               <Icon size={16} />
               <span className="tab-label">{label}</span>
               {id === 'favorites' && favoritesCount > 0 && <span className="count">{favoritesCount}</span>}
-              {id === 'team' && teamCount > 0 && <span className="count">{teamCount}</span>}
             </button>
           ))}
         </nav>

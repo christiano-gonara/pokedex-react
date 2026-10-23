@@ -1,9 +1,9 @@
-import { Check, Plus, Star } from 'lucide-react'
+import { Star } from 'lucide-react'
 import '../css/PokemonCard.css'
 import TypeBadge from './TypeBadge'
 import { STAT_SHORT, TYPE_COLORS, formatId, imageUrl } from '../utils'
 
-function PokemonCard({ pokemon, isFavorite, inTeam, onSelect, onToggleFavorite, onToggleTeam }) {
+function PokemonCard({ pokemon, isFavorite, onSelect, onToggleFavorite }) {
   const color = TYPE_COLORS[pokemon.types[0]?.name] ?? TYPE_COLORS.Typeless
 
   return (
@@ -21,17 +21,6 @@ function PokemonCard({ pokemon, isFavorite, inTeam, onSelect, onToggleFavorite, 
             }}
           >
             <Star size={17} fill={isFavorite ? 'currentColor' : 'none'} />
-          </button>
-          <button
-            className={inTeam ? 'card-action team active' : 'card-action team'}
-            aria-label={inTeam ? 'Remover do time' : 'Adicionar ao time'}
-            title={inTeam ? 'Remover do time' : 'Adicionar ao time'}
-            onClick={(e) => {
-              e.stopPropagation()
-              onToggleTeam(pokemon)
-            }}
-          >
-            {inTeam ? <Check size={17} /> : <Plus size={17} />}
           </button>
         </div>
         <img src={imageUrl(pokemon.id)} alt={pokemon.name} loading="lazy" />
