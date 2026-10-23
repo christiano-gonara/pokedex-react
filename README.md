@@ -37,13 +37,15 @@ Os dados estão em `src/data/pokedex-data.json` (tipos, Pokémon e treinadores).
 
 Ícones: [Lucide](https://lucide.dev) (`lucide-react`).
 
-Imagens carregadas da [PokéAPI sprites](https://github.com/PokeAPI/sprites) (`official-artwork/{id}.png`).
+Imagens dos treinadores (pixel art) em `src/assets/images/trainers/`, baixadas dos sprites do [Pokémon Showdown](https://play.pokemonshowdown.com/sprites/trainers/).
+
+Imagens dos Pokémon carregadas da [PokéAPI sprites](https://github.com/PokeAPI/sprites) (`official-artwork/{id}.png`).
 
 ## Organização
 
 ```text
 src/
-├── assets/images/   # imagens locais (opcional)
+├── assets/images/   # retratos dos treinadores
 ├── components/      # Header, SearchBar, Filters, PokemonList, PokemonCard,
 │                    # PokemonDetails, StatBar, TypeBadge, TypeFilter,
 │                    # TrainerList, Footer
