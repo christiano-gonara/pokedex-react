@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Star, StarFilled } from './icons'
+import { Star } from './icons3d'
 import '../css/PokemonCard.css'
 import TypeBadge from './TypeBadge'
 import { STAT_SHORT, TYPE_COLORS, formatId, imageUrl } from '../utils'
@@ -30,7 +30,7 @@ function PokemonCard({ pokemon, isFavorite, onSelect, onToggleFavorite }) {
               onToggleFavorite(pokemon.id)
             }}
           >
-            {isFavorite ? <StarFilled size={17} /> : <Star size={17} />}
+            <Star size={26} on={isFavorite} />
           </button>
         </div>
         <img src={imageUrl(pokemon.id)} alt={pokemon.name} loading="lazy" onLoad={() => setLoaded(true)} />

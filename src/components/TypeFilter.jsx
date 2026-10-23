@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
-import { Check, ChevronDown, Close, Sliders } from './icons'
+import { Check, ChevronDown, Close, Funnel } from './icons3d'
 import { TYPE_COLORS } from '../utils'
 
 function TypeFilter({ types, selectedType, onTypeChange }) {
@@ -26,18 +26,18 @@ function TypeFilter({ types, selectedType, onTypeChange }) {
   return (
     <div className="type-filter" ref={ref}>
       <button
-        className={selectedType ? 'pill-btn selected' : 'pill-btn'}
+        className={selectedType ? 'pill-btn btn3d selected' : 'pill-btn btn3d'}
         style={selectedType ? { '--type-color': TYPE_COLORS[selectedType] } : undefined}
         onClick={() => setOpen((o) => !o)}
         aria-expanded={open}
       >
-        {selectedType ? <span className="chip-dot" /> : <Sliders size={16} />}
+        {selectedType ? <span className="chip-dot" /> : <Funnel size={20} />}
         <span>{selectedType || 'Tipo'}</span>
-        <ChevronDown size={16} className={open ? 'chevron open' : 'chevron'} />
+        <ChevronDown size={18} className={open ? 'chevron open' : 'chevron'} />
       </button>
       {selectedType && (
         <button className="clear-type" onClick={() => onTypeChange('')} aria-label="Limpar filtro de tipo">
-          <Close size={14} />
+          <Close size={20} />
         </button>
       )}
 
@@ -63,7 +63,7 @@ function TypeFilter({ types, selectedType, onTypeChange }) {
               >
                 <span className="chip-dot" />
                 {t.name}
-                {selectedType === t.name && <Check size={14} className="type-check" />}
+                {selectedType === t.name && <Check size={18} className="type-check" />}
               </button>
             ))}
           </div>

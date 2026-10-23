@@ -37,7 +37,7 @@ Os dados estão em `src/data/pokedex-data.json` (tipos, Pokémon e treinadores).
 
 ## Imagens
 
-Ícones: [Pixelarticons](https://pixelarticons.com) (`pixelarticons`), em pixel art, mais a Pokébola e a estrela preenchida desenhadas no mesmo grid em `src/components/icons.jsx`.
+Ícones: flat 3D desenhados para o projeto em `src/components/icons3d.jsx` (menu, busca, filtros, favoritos, insígnias); nos banners que imitam os jogos, [Pixelarticons](https://pixelarticons.com) (`pixelarticons`). Fontes: Fredoka (títulos e controles), Inter (texto) e Press Start 2P (banners).
 
 Imagens dos treinadores (pixel art) em `src/assets/images/trainers/`, baixadas dos sprites do [Pokémon Showdown](https://play.pokemonshowdown.com/sprites/trainers/).
 

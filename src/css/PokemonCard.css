@@ -94,22 +94,25 @@
 .card-action {
   display: grid;
   place-items: center;
-  width: 34px;
-  height: 34px;
+  width: 38px;
+  height: 38px;
+  padding: 0;
   border: none;
-  border-radius: 50%;
-  background: color-mix(in srgb, var(--surface) 75%, transparent);
-  backdrop-filter: blur(6px);
-  color: var(--muted);
-  transition: transform 0.2s, color 0.2s;
+  background: none;
 }
 
-.card-action:hover {
-  transform: scale(1.12);
+.card-action:hover .icon3d {
+  transform: translateY(-3px) rotate(-12deg) scale(1.12);
 }
 
-.card-action.fav.active {
-  color: #f5b301;
+.card-action.fav.active .icon3d {
+  animation: star-pop 0.4s cubic-bezier(0.3, 1.6, 0.5, 1);
+}
+
+@keyframes star-pop {
+  40% {
+    transform: scale(1.35) rotate(-15deg);
+  }
 }
 
 .card-body {

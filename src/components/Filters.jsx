@@ -1,4 +1,4 @@
-import { Grid, List, Shuffle, Sort } from './icons'
+import { Dice, Grid, Sort, Table } from './icons3d'
 import '../css/Filters.css'
 import TypeFilter from './TypeFilter'
 
@@ -16,15 +16,15 @@ const SORT_OPTIONS = [
 
 const LAYOUTS = [
   ['cards', 'Cards', Grid],
-  ['table', 'Tabela', List],
+  ['table', 'Tabela', Table],
 ]
 
 function Filters({ types, selectedType, onTypeChange, sortBy, onSortChange, onRandom, layout, onLayoutChange }) {
   return (
     <div className="filters">
       <TypeFilter types={types} selectedType={selectedType} onTypeChange={onTypeChange} />
-      <label className="pill-btn sort">
-        <Sort size={16} />
+      <label className="pill-btn btn3d sort">
+        <Sort size={20} />
         <select value={sortBy} onChange={(e) => onSortChange(e.target.value)} aria-label="Ordenar por">
           {SORT_OPTIONS.map(([value, label]) => (
             <option key={value} value={value}>
@@ -33,8 +33,8 @@ function Filters({ types, selectedType, onTypeChange, sortBy, onSortChange, onRa
           ))}
         </select>
       </label>
-      <button className="pill-btn icon-only" onClick={onRandom} title="Pokémon aleatório" aria-label="Pokémon aleatório">
-        <Shuffle size={18} />
+      <button className="pill-btn btn3d icon-only" onClick={onRandom} title="Pokémon aleatório" aria-label="Pokémon aleatório">
+        <Dice size={24} />
       </button>
       <div className="layout-toggle" role="group" aria-label="Modo de exibição">
         {LAYOUTS.map(([value, label, Icon]) => (
@@ -46,7 +46,7 @@ function Filters({ types, selectedType, onTypeChange, sortBy, onSortChange, onRa
             title={label}
             aria-label={label}
           >
-            <Icon size={17} />
+            <Icon size={20} />
           </button>
         ))}
       </div>

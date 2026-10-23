@@ -1,10 +1,16 @@
 import { useId } from 'react'
 
 // Pokébola em flat 3D: cores chapadas, sombra lateral e um brilho no topo
-function Logo() {
+function Logo({ size, className }) {
   const clip = useId()
   return (
-    <svg className="logo" viewBox="0 0 32 32" aria-hidden="true">
+    <svg
+      className={className ? `logo ${className}` : 'logo'}
+      viewBox="0 0 32 32"
+      width={size}
+      height={size}
+      aria-hidden="true"
+    >
       <defs>
         <clipPath id={clip}>
           <circle cx="16" cy="16" r="14" />

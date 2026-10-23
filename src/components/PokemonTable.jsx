@@ -1,4 +1,4 @@
-import { ChevronDown, ChevronUp, StarFilled } from './icons'
+import { ChevronDown, Star } from './icons3d'
 import '../css/PokemonTable.css'
 import TypeBadge from './TypeBadge'
 import { STAT_SHORT, formatId, imageUrl, totalStats } from '../utils'
@@ -11,7 +11,6 @@ const descendingByDefault = (key) => key !== 'id' && key !== 'name'
 function SortHeader({ column, label, sortBy, reversed, onSort, numeric }) {
   const active = sortBy === column
   const descending = descendingByDefault(column) !== reversed
-  const Arrow = descending ? ChevronDown : ChevronUp
   return (
     <th
       className={numeric ? 'num' : undefined}
@@ -19,7 +18,7 @@ function SortHeader({ column, label, sortBy, reversed, onSort, numeric }) {
     >
       <button className={active ? 'sort-btn active' : 'sort-btn'} onClick={() => onSort(column)}>
         {label}
-        <Arrow size={14} className="sort-arrow" />
+        <ChevronDown size={16} className={descending ? 'sort-arrow' : 'sort-arrow up'} />
       </button>
     </th>
   )
@@ -55,7 +54,7 @@ function PokemonTable({ pokemon, favorites, sortBy, reversed, onSort, onSelect }
                 <div className="name-cell">
                   <img src={imageUrl(p.id)} alt="" loading="lazy" />
                   <span>{p.name}</span>
-                  {favorites.includes(p.id) && <StarFilled size={13} className="fav-mark" aria-label="Favorito" />}
+                  {favorites.includes(p.id) && <Star size={16} className="fav-mark" aria-label="Favorito" />}
                 </div>
               </td>
               <td>

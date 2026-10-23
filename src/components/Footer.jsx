@@ -1,4 +1,4 @@
-import { Database, Github, Image } from './icons'
+import { Code, Database, Picture } from './icons3d'
 import '../css/Footer.css'
 import Logo from './Logo'
 
@@ -15,13 +15,13 @@ function Footer() {
         </div>
         <nav className="footer-links">
           <span>
-            <Database size={14} /> pokedex-data.json
+            <Database size={20} /> pokedex-data.json
           </span>
           <a href="https://pokeapi.co" target="_blank" rel="noreferrer">
-            <Image size={14} /> Imagens: PokéAPI
+            <Picture size={20} /> Imagens: PokéAPI
           </a>
           <a href="https://github.com/christiano-gonara/pokedex-react" target="_blank" rel="noreferrer">
-            <Github size={14} /> Repositório
+            <Code size={20} /> Repositório
           </a>
         </nav>
       </div>

@@ -1,4 +1,4 @@
-import { Trophy } from './icons'
+import { Bolt, Flame, Medal } from './icons3d'
 import '../css/TrainerList.css'
 import { TYPE_COLORS, difficultyOf, imageUrl, portraitOf, totalStats } from '../utils'
 
@@ -9,6 +9,7 @@ function mainType(team) {
 }
 
 const MAX_BADGES = 9
+const DIFFICULTIES = ['Fácil', 'Médio', 'Difícil']
 const TEAM_SLOTS = 6
 
 function TrainerCard({ trainer, team, onSelectPokemon }) {
@@ -25,12 +26,20 @@ function TrainerCard({ trainer, team, onSelectPokemon }) {
           <h3>{trainer.name}</h3>
           <div className="medals" title={`${trainer.badges} insígnias`}>
             {Array.from({ length: MAX_BADGES }, (_, i) => (
-              <Trophy key={i} size={15} className={i < trainer.badges ? 'medal on' : 'medal'} />
+              <Medal key={i} size={17} on={i < trainer.badges} />
             ))}
           </div>
           <div className="hero-meta">
-            <span className={`level ${difficulty.toLowerCase()}`}>{difficulty}</span>
+            <span className="level" title={`Dificuldade: ${difficulty}`}>
+              <span className="flames">
+                {DIFFICULTIES.map((d, i) => (
+                  <Flame key={d} size={16} on={i <= DIFFICULTIES.indexOf(difficulty)} />
+                ))}
+              </span>
+              {difficulty}
+            </span>
             <span className="power">
+              <Bolt size={18} />
               Poder <strong>{power}</strong>
             </span>
           </div>

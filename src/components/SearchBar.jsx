@@ -1,10 +1,10 @@
-import { Close, Search } from './icons'
+import { Close, Search } from './icons3d'
 import '../css/SearchBar.css'
 
 function SearchBar({ value, onChange }) {
   return (
     <div className="search-bar">
-      <Search size={20} className="search-icon" />
+      <Search size={24} className="search-icon" />
       <input
         type="text"
         placeholder="Pesquisar por nome ou ID..."
@@ -13,7 +13,7 @@ function SearchBar({ value, onChange }) {
       />
       {value && (
         <button className="search-clear" onClick={() => onChange('')} aria-label="Limpar pesquisa">
-          <Close size={18} />
+          <Close size={24} />
         </button>
       )}
     </div>

@@ -117,116 +117,100 @@
   border-radius: 8px;
 }
 
-/* ----- Menu: caixa de diálogo com cursor ----- */
+/* ----- Menu: abas em flat 3D; a ativa fica afundada e colorida ----- */
 .menu {
   display: flex;
-  gap: 2px;
+  gap: var(--space-2);
   margin-left: auto;
-  padding: 4px;
-  background: var(--menu-paper);
-  border: 3px solid var(--menu-ink);
-  border-radius: 6px;
-  box-shadow:
-    inset 0 0 0 2px #e7dac4,
-    0 3px 0 #7f1d1d;
 }
 
 .menu-item {
-  --tab-color: #dc2626;
+  --tab-color: #fde047;
+  --tab-depth: #eab308;
   position: relative;
   display: inline-flex;
   align-items: center;
   gap: var(--space-2);
-  padding: var(--space-2) var(--space-3) var(--space-2) var(--space-5);
-  border: none;
-  border-radius: 3px;
-  background: transparent;
-  color: #7d7160;
-  font-size: var(--fs-label);
-  font-weight: 600;
-  transition: color 0.15s, background 0.15s;
+  padding: var(--space-2) var(--space-4) var(--space-2) var(--space-3);
+  border-color: var(--menu-ink);
+  border-radius: 14px;
+  background: var(--menu-paper);
+  color: var(--menu-ink);
+  box-shadow: 0 4px 0 var(--menu-ink);
+  font-size: var(--fs-body);
 }
 
 .menu-item[data-tab='trainers'] {
-  --tab-color: #4338ca;
+  --tab-color: #a5b4fc;
+  --tab-depth: #818cf8;
 }
 
 .menu-item[data-tab='favorites'] {
-  --tab-color: #0f766e;
+  --tab-color: #5eead4;
+  --tab-depth: #2dd4bf;
 }
 
-/* Cursor de seleção dos jogos */
-.menu-item::before {
-  content: '';
-  position: absolute;
-  left: 0.55rem;
-  top: 50%;
-  width: 6px;
-  height: 10px;
-  margin-top: -5px;
-  background: var(--menu-ink);
-  clip-path: polygon(0 0, 100% 50%, 0 100%);
-  opacity: 0;
+.menu-item .icon3d {
+  color: var(--menu-ink);
+  filter: drop-shadow(0 1.5px 0 var(--menu-ink));
 }
 
 .menu-item:hover {
-  color: var(--menu-ink);
+  box-shadow: 0 6px 0 var(--menu-ink);
 }
 
-.menu-item:hover::before {
-  opacity: 0.3;
-}
-
-.menu-item.active {
-  color: var(--tab-color);
-  background: color-mix(in srgb, var(--tab-color) 12%, transparent);
-}
-
-.menu-item.active::before {
-  opacity: 1;
+/* A aba atual fica "pressionada", como um botão travado */
+.menu-item.active,
+.menu-item.active:hover {
+  transform: translateY(3px);
   background: var(--tab-color);
-  animation: cursor-blink 1s steps(1) infinite;
+  box-shadow:
+    inset 0 -3px 0 var(--tab-depth),
+    0 1px 0 var(--menu-ink);
 }
 
 .menu-item:focus-visible {
-  outline: 2px solid var(--tab-color);
-  outline-offset: 1px;
+  outline: 2px solid #fff;
+  outline-offset: 3px;
 }
 
 .menu-count {
-  padding: 3px 4px;
-  border-radius: 3px;
-  background: var(--menu-ink);
-  color: #fde047;
+  position: absolute;
+  top: -9px;
+  right: -9px;
+  min-width: 22px;
+  padding: 3px 5px;
+  border: 2px solid var(--menu-ink);
+  border-radius: 999px;
+  background: #ef4444;
+  color: #fff;
+  box-shadow: 0 2px 0 var(--menu-ink);
   font-size: var(--fs-small);
   font-weight: 700;
   line-height: 1;
+  text-align: center;
 }
 
 /* ----- Botão de tema ----- */
 .theme-btn {
   display: grid;
   place-items: center;
-  width: 42px;
-  height: 42px;
+  width: 46px;
+  height: 46px;
   padding: 0;
-  border: 3px solid var(--menu-ink);
-  border-radius: 6px;
+  border-color: var(--menu-ink);
+  border-radius: 14px;
   background: var(--menu-paper);
+  box-shadow: 0 4px 0 var(--menu-ink);
+}
+
+.theme-btn:hover {
+  box-shadow: 0 6px 0 var(--menu-ink);
+}
+
+.theme-btn .icon3d {
   color: var(--menu-ink);
-  box-shadow: 0 3px 0 #7f1d1d;
-  transition: transform 0.1s, box-shadow 0.1s;
-}
-
-.theme-btn:active {
-  transform: translateY(2px);
-  box-shadow: 0 1px 0 #7f1d1d;
-}
-
-@keyframes cursor-blink {
-  50% {
-    opacity: 0;
-  }
+  filter: drop-shadow(0 1.5px 0 var(--menu-ink));
 }
 
 @media (max-width: 760px) {
@@ -246,15 +230,11 @@
   }
 
   .menu-item {
-    padding: var(--space-2) var(--space-3);
+    padding: var(--space-2);
   }
 
   .menu-item.active {
-    padding-left: var(--space-5);
-  }
-
-  .menu-item:not(.active)::before {
-    display: none;
+    padding-right: var(--space-3);
   }
 }
 

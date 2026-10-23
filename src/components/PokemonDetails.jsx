@@ -1,5 +1,5 @@
 import { useEffect, useRef } from 'react'
-import { Close, Users } from './icons'
+import { Cap, Close } from './icons3d'
 import '../css/PokemonDetails.css'
 import StatBar from './StatBar'
 import StatRadar from './StatRadar'
@@ -51,7 +51,7 @@ function PokemonDetails({ pokemon, trainers, onClose }) {
         aria-label={pokemon.name} style={{ '--card-color': color }} onClick={(e) => e.stopPropagation()}>
         <div className="modal-hero">
           <button ref={closeRef} className="modal-close" onClick={onClose} aria-label="Fechar">
-            <Close size={20} />
+            <Close size={30} />
           </button>
           <span className="modal-watermark">{pokemon.name}</span>
           <img src={imageUrl(pokemon.id)} alt={pokemon.name} />
@@ -82,7 +82,7 @@ function PokemonDetails({ pokemon, trainers, onClose }) {
           {owners.length > 0 && (
             <>
               <h4 className="section-title">
-                <Users size={16} /> Treinadores
+                <Cap size={20} /> Treinadores
               </h4>
               <div className="owner-chips">
                 {owners.map((t) => (
