@@ -93,6 +93,23 @@
   color: var(--muted);
 }
 
+.stats-layout {
+  display: grid;
+  gap: 1rem;
+}
+
+@media (min-width: 800px) {
+  .modal {
+    max-width: 760px;
+  }
+
+  .stats-layout {
+    grid-template-columns: 260px 1fr;
+    align-items: center;
+    gap: 2rem;
+  }
+}
+
 .stat-total {
   display: flex;
   justify-content: space-between;

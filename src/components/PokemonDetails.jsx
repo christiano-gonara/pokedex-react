@@ -2,6 +2,7 @@ import { useEffect } from 'react'
 import { Users, X } from 'lucide-react'
 import '../css/PokemonDetails.css'
 import StatBar from './StatBar'
+import StatRadar from './StatRadar'
 import TypeBadge from './TypeBadge'
 import { STAT_LABELS, TYPE_COLORS, formatId, imageUrl } from '../utils'
 
@@ -40,12 +41,17 @@ function PokemonDetails({ pokemon, trainers, onClose }) {
           </div>
 
           <h4 className="section-title">Atributos base</h4>
-          {Object.entries(pokemon.stats).map(([key, value]) => (
-            <StatBar key={key} label={STAT_LABELS[key]} value={value} />
-          ))}
-          <div className="stat-total">
-            <span>Total</span>
-            <strong>{total}</strong>
+          <div className="stats-layout">
+            <StatRadar stats={pokemon.stats} />
+            <div>
+              {Object.entries(pokemon.stats).map(([key, value]) => (
+                <StatBar key={key} label={STAT_LABELS[key]} value={value} />
+              ))}
+              <div className="stat-total">
+                <span>Total</span>
+                <strong>{total}</strong>
+              </div>
+            </div>
           </div>
 
           {owners.length > 0 && (

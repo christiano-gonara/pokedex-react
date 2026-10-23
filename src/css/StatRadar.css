@@ -1,0 +1,59 @@
+.stat-radar {
+  display: block;
+  width: 100%;
+  max-width: 280px;
+  margin: 0 auto;
+  overflow: visible;
+}
+
+.radar-ring {
+  fill: none;
+  stroke: var(--border);
+  stroke-width: 1;
+}
+
+.radar-ring.outer {
+  fill: var(--surface-2);
+}
+
+.radar-axis {
+  stroke: var(--border);
+  stroke-width: 1;
+}
+
+.radar-shape {
+  fill: color-mix(in srgb, var(--card-color) 35%, transparent);
+  stroke: var(--card-color);
+  stroke-width: 2;
+  stroke-linejoin: round;
+  animation: radar-grow 0.6s cubic-bezier(0.2, 0.8, 0.2, 1.1);
+}
+
+.radar-dot {
+  fill: var(--surface);
+  stroke: var(--card-color);
+  stroke-width: 2;
+}
+
+.stat-radar text {
+  font-size: 10px;
+}
+
+.radar-label {
+  fill: var(--muted);
+  font-weight: 600;
+}
+
+.radar-value {
+  fill: var(--text);
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}
+
+/* O viewBox é centrado em 0,0, então a origem padrão do SVG já é o centro */
+@keyframes radar-grow {
+  from {
+    transform: scale(0);
+    opacity: 0;
+  }
+}

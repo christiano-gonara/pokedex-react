@@ -12,11 +12,12 @@ Pokédex interativa feita com **React + Vite** (Atividade 03 — Desenvolvimento
 - Lista dos 151 Pokémon com ID, nome, tipos e todos os atributos
 - Pesquisa por nome ou ID (atualiza enquanto digita)
 - Filtro por tipo (tipos vindos do `pokedex-data.json`)
-- Detalhes em modal com barras de atributos
+- Detalhes em modal com gráfico de radar (hexágono) e barras de atributos
+- Visualização em cards ou em tabela, com ordenação clicando no cabeçalho
 - Área de treinadores (insígnias e Pokémon de cada um)
 - Mensagem quando nada é encontrado
 - Extras: favoritos, ordenação, Pokémon aleatório, modo escuro, layout responsivo
-- Favoritos ficam salvos no `localStorage`
+- Favoritos, tema e modo de exibição ficam salvos no `localStorage`
 
 ## Como executar
 
@@ -47,7 +48,8 @@ Imagens dos Pokémon carregadas da [PokéAPI sprites](https://github.com/PokeAPI
 src/
 ├── assets/images/   # retratos dos treinadores
 ├── components/      # Header, SearchBar, Filters, PokemonList, PokemonCard,
-│                    # PokemonDetails, StatBar, TypeBadge, TypeFilter,
+│                    # PokemonTable, PokemonDetails, StatBar, StatRadar,
+│                    # TypeBadge, TypeFilter,
 │                    # TrainerList, PageHero, KantoBadge, Footer
 │   └── heroes/      # PokedexHero, TrainersHero, FavoritesHero
 ├── css/             # estilos por componente

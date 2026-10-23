@@ -9,6 +9,7 @@ import Filters from './components/Filters'
 import PokemonList from './components/PokemonList'
 import PokemonDetails from './components/PokemonDetails'
 import TrainerList from './components/TrainerList'
+import { totalStats } from './utils'
 
 const { pokemon: allPokemon, types, trainers } = data
 const realTypes = types.filter((t) => t.id !== 0)
@@ -34,6 +35,14 @@ function App() {
   const [search, setSearch] = useState('')
   const [selectedType, setSelectedType] = useState('')
   const [sortBy, setSortBy] = useState('id')
+  const [reversed, setReversed] = useState(false)
+  const [layout, setLayout] = useState(() => {
+    try {
+      return localStorage.getItem('layout') === 'table' ? 'table' : 'cards'
+    } catch {
+      return 'cards'
+    }
+  })
   const [selected, setSelected] = useState(null)
   const [favorites, setFavorites] = useState(() => loadList('favorites'))
   const [darkMode, setDarkMode] = useState(() => {
@@ -55,6 +64,14 @@ function App() {
 
   useEffect(() => saveList('favorites', favorites), [favorites])
 
+  useEffect(() => {
+    try {
+      localStorage.setItem('layout', layout)
+    } catch {
+      // sem localStorage, volta aos cards na próxima visita
+    }
+  }, [layout])
+
   const visiblePokemon = useMemo(() => {
     const query = search.trim().toLowerCase().replace(/^#/, '')
     const list = allPokemon.filter((p) => {
@@ -63,12 +80,14 @@ function App() {
       if (!query) return true
       return p.name.toLowerCase().includes(query) || String(p.id).includes(query)
     })
-    return list.sort((a, b) => {
+    list.sort((a, b) => {
       if (sortBy === 'name') return a.name.localeCompare(b.name)
       if (sortBy === 'id') return a.id - b.id
+      if (sortBy === 'total') return totalStats(b) - totalStats(a)
       return b.stats[sortBy] - a.stats[sortBy]
     })
-  }, [search, selectedType, sortBy, view, favorites])
+    return reversed ? list.reverse() : list
+  }, [search, selectedType, sortBy, reversed, view, favorites])
 
   const favoritePokemon = useMemo(
     () => favorites.map((id) => allPokemon.find((p) => p.id === id)).filter(Boolean),
@@ -77,6 +96,17 @@ function App() {
 
   const toggleFavorite = (id) =>
     setFavorites((prev) => (prev.includes(id) ? prev.filter((f) => f !== id) : [...prev, id]))
+
+  const changeSort = (key) => {
+    setSortBy(key)
+    setReversed(false)
+  }
+
+  // Clicar de novo na mesma coluna da tabela inverte a ordem
+  const sortByColumn = (key) => {
+    if (key === sortBy) setReversed((r) => !r)
+    else changeSort(key)
+  }
 
   const closeDetails = useCallback(() => setSelected(null), [])
 
@@ -114,8 +144,10 @@ function App() {
                 selectedType={selectedType}
                 onTypeChange={setSelectedType}
                 sortBy={sortBy}
-                onSortChange={setSortBy}
+                onSortChange={changeSort}
                 onRandom={pickRandom}
+                layout={layout}
+                onLayoutChange={setLayout}
               />
             </div>
             {visiblePokemon.length > 0 && (
@@ -128,6 +160,10 @@ function App() {
             <PokemonList
               pokemon={visiblePokemon}
               favorites={favorites}
+              layout={layout}
+              sortBy={sortBy}
+              reversed={reversed}
+              onSort={sortByColumn}
               onSelect={setSelected}
               onToggleFavorite={toggleFavorite}
             />

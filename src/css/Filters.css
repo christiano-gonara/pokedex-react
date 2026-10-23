@@ -80,6 +80,38 @@
   cursor: pointer;
 }
 
+/* ----- Alternância cards / tabela ----- */
+.layout-toggle {
+  display: flex;
+  gap: 2px;
+  min-height: 48px;
+  padding: 4px;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  background: var(--surface);
+  box-shadow: var(--shadow-sm);
+}
+
+.layout-toggle button {
+  display: grid;
+  place-items: center;
+  width: 38px;
+  border: none;
+  border-radius: 999px;
+  background: transparent;
+  color: var(--muted);
+  transition: background 0.15s, color 0.15s;
+}
+
+.layout-toggle button:hover {
+  color: var(--text);
+}
+
+.layout-toggle button.active {
+  background: var(--text);
+  color: var(--surface);
+}
+
 /* ----- Dropdown de tipos ----- */
 .type-filter {
   position: relative;
@@ -182,8 +214,12 @@
     flex-direction: column;
   }
 
+  .filters {
+    flex-wrap: wrap;
+  }
+
   .filters .type-filter {
-    flex: 1;
+    flex: 1 1 100%;
   }
 
   .filters .type-filter .pill-btn {
