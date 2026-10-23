@@ -12,11 +12,11 @@ function Header({ view, onViewChange, darkMode, onToggleDark, favoritesCount }) 
   return (
     <header className="header">
       <div className="header-inner">
-        <div className="brand">
+        <button className="brand" onClick={() => onViewChange('pokedex')} aria-label="Pokédex Kanto, ir para Pokémon">
           <Logo />
           <span className="brand-name">Pokédex</span>
           <span className="brand-region">KANTO</span>
-        </div>
+        </button>
 
         <nav className="menu" aria-label="Seções">
           {TABS.map(({ id, label, icon: Icon }) => (

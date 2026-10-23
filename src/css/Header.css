@@ -25,42 +25,96 @@
   gap: var(--space-4);
 }
 
-/* ----- Marca ----- */
+/* ----- Marca: botão em flat 3D que volta para a página Pokémon ----- */
 .brand {
   display: flex;
   align-items: center;
   gap: var(--space-3);
+  padding: 0;
+  border: none;
+  background: none;
   color: #fff;
 }
 
-.brand .logo {
-  width: 30px;
-  height: 30px;
-  color: var(--menu-ink);
-  filter: drop-shadow(2px 2px 0 #7f1d1d);
-  transition: transform 0.6s;
+.brand > * {
+  transition: transform 0.18s cubic-bezier(0.3, 1.6, 0.5, 1), filter 0.18s;
 }
 
-.brand:hover .logo {
-  transform: rotate(360deg);
+.brand .logo {
+  width: 40px;
+  height: 40px;
+  color: var(--menu-ink);
+  filter: drop-shadow(0 3px 0 #7f1d1d);
 }
 
 .brand-name {
   font-family: var(--font-display);
-  font-size: var(--fs-heading);
+  font-size: 1.35rem;
   font-weight: 800;
   letter-spacing: -0.01em;
-  text-shadow: 2px 2px 0 #7f1d1d;
+  /* Texto extrudado: camadas de sombra sólida formam a lateral */
+  text-shadow:
+    0 1px 0 #b91c1c,
+    0 2px 0 #991b1b,
+    0 3px 0 #7f1d1d;
 }
 
 .brand-region {
-  padding: 3px 5px;
-  border-radius: 3px;
+  padding: 4px 8px 3px;
+  border: 2px solid var(--menu-ink);
+  border-radius: 6px;
   background: #fde047;
   color: var(--menu-ink);
   font-size: var(--fs-small);
-  font-weight: 700;
-  letter-spacing: 0.08em;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  box-shadow:
+    inset 0 -3px 0 #eab308,
+    0 3px 0 var(--menu-ink);
+}
+
+/* Ao passar o mouse a marca levanta; ao clicar, afunda */
+.brand:hover .logo {
+  transform: translateY(-3px) rotate(-14deg);
+  filter: drop-shadow(0 6px 0 #7f1d1d);
+}
+
+.brand:hover .brand-name {
+  transform: translateY(-3px);
+  text-shadow:
+    0 1px 0 #b91c1c,
+    0 2px 0 #991b1b,
+    0 3px 0 #7f1d1d,
+    0 4px 0 #7f1d1d,
+    0 6px 0 rgba(69, 10, 10, 0.5);
+}
+
+.brand:hover .brand-region {
+  transform: translateY(-3px);
+  box-shadow:
+    inset 0 -3px 0 #eab308,
+    0 6px 0 var(--menu-ink);
+}
+
+.brand:active > * {
+  transform: translateY(2px);
+  transition-duration: 0.05s;
+}
+
+.brand:active .logo {
+  filter: drop-shadow(0 1px 0 #7f1d1d);
+}
+
+.brand:active .brand-region {
+  box-shadow:
+    inset 0 -3px 0 #eab308,
+    0 1px 0 var(--menu-ink);
+}
+
+.brand:focus-visible {
+  outline: 2px solid #fff;
+  outline-offset: 4px;
+  border-radius: 8px;
 }
 
 /* ----- Menu: caixa de diálogo com cursor ----- */

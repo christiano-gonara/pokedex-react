@@ -70,10 +70,13 @@
 }
 
 .dex-title p {
-  margin: var(--space-1) 0 0;
-  max-width: 320px;
-  font-size: var(--fs-label);
-  color: #aab0bf;
+  margin: var(--space-2) 0 0;
+  max-width: 380px;
+  font-family: var(--font-display);
+  font-size: var(--fs-heading);
+  font-weight: 700;
+  line-height: 1.35;
+  color: #e5e7eb;
 }
 
 /* ----- Visor verde ----- */
@@ -233,7 +236,7 @@
   }
 
   .dex-title p {
-    display: none;
+    font-size: var(--fs-body);
   }
 
   .dex-lens {
