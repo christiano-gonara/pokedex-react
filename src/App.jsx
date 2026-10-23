@@ -36,10 +36,21 @@ function App() {
   const [sortBy, setSortBy] = useState('id')
   const [selected, setSelected] = useState(null)
   const [favorites, setFavorites] = useState(() => loadList('favorites'))
-  const [darkMode, setDarkMode] = useState(() => window.matchMedia('(prefers-color-scheme: dark)').matches)
+  const [darkMode, setDarkMode] = useState(() => {
+    try {
+      return localStorage.getItem('theme') === 'dark'
+    } catch {
+      return false
+    }
+  })
 
   useEffect(() => {
     document.documentElement.dataset.theme = darkMode ? 'dark' : 'light'
+    try {
+      localStorage.setItem('theme', darkMode ? 'dark' : 'light')
+    } catch {
+      // sem localStorage, o tema volta ao claro na próxima visita
+    }
   }, [darkMode])
 
   useEffect(() => saveList('favorites', favorites), [favorites])
@@ -83,10 +94,11 @@ function App() {
       <main>
         <PageHero
           view={view}
-          pokemonCount={allPokemon.length}
+          pokemon={allPokemon}
           typeCount={realTypes.length}
           trainers={trainers}
           favorites={favoritePokemon}
+          onSelect={setSelected}
         />
 
         {view === 'trainers' && (

@@ -48,7 +48,8 @@ src/
 ├── assets/images/   # retratos dos treinadores
 ├── components/      # Header, SearchBar, Filters, PokemonList, PokemonCard,
 │                    # PokemonDetails, StatBar, TypeBadge, TypeFilter,
-│                    # TrainerList, PageHero, Footer
+│                    # TrainerList, PageHero, KantoBadge, Footer
+│   └── heroes/      # PokedexHero, TrainersHero, FavoritesHero
 ├── css/             # estilos por componente
 ├── data/            # pokedex-data.json
 ├── App.jsx          # estado global (busca, filtro, ordenação, favoritos)

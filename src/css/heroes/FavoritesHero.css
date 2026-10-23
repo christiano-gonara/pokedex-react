@@ -1,0 +1,160 @@
+/* Banner da página Favoritos: a caixa do PC do Bill */
+.pc {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr minmax(300px, 520px);
+  align-items: center;
+  gap: 1.5rem;
+  margin-bottom: 1.75rem;
+  padding: 1.75rem 2rem;
+  overflow: hidden;
+  border-radius: 28px;
+  color: #fff;
+  background:
+    linear-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px) 0 0 / 22px 22px,
+    linear-gradient(90deg, rgba(255, 255, 255, 0.05) 1px, transparent 1px) 0 0 / 22px 22px,
+    radial-gradient(circle at 85% 0%, rgba(253, 224, 71, 0.35), transparent 45%),
+    linear-gradient(135deg, #0f766e, #115e59 55%, #083c38);
+  box-shadow: 0 20px 40px -18px rgba(8, 60, 56, 0.7);
+  animation: fade-up 0.45s ease-out both;
+}
+
+.pc-text {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.pc-eyebrow {
+  font-size: var(--fs-small);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: #fde047;
+}
+
+.pc h1 {
+  margin: 0;
+  font-size: var(--fs-title);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+}
+
+.pc p {
+  margin: 0;
+  max-width: 340px;
+  opacity: 0.88;
+}
+
+.pc-stats {
+  display: flex;
+  gap: 0.6rem;
+  margin: 0.9rem 0 0;
+}
+
+.pc-stats div {
+  padding: 0.5rem 0.9rem;
+  border-radius: 14px;
+  border: 1px solid rgba(253, 224, 71, 0.3);
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.pc-stats dd {
+  margin: 0;
+  font-family: var(--font-pixel);
+  font-size: 0.85rem;
+  color: #fde047;
+}
+
+.pc-stats dt {
+  margin-top: 0.3rem;
+  font-size: var(--fs-small);
+  font-weight: 600;
+  opacity: 0.8;
+}
+
+/* ----- Caixa ----- */
+.pc-box {
+  overflow: hidden;
+  border: 4px solid #134e4a;
+  border-radius: 16px;
+  background:
+    conic-gradient(#fef3c7 25%, #fde68a 0 50%, #fef3c7 0 75%, #fde68a 0) 0 0 / 28px 28px;
+  box-shadow: 0 6px 0 #042f2e;
+}
+
+.pc-box-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.45rem 0.5rem;
+  background: #f59e0b;
+  border-bottom: 4px solid #b45309;
+  color: #fff;
+  font-family: var(--font-pixel);
+  font-size: 0.65rem;
+  text-shadow: 2px 2px 0 #b45309;
+}
+
+.pc-box-header button {
+  display: grid;
+  place-items: center;
+  width: 28px;
+  height: 28px;
+  padding: 0;
+  border: none;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.25);
+  color: #fff;
+}
+
+.pc-box-header button:disabled {
+  opacity: 0.4;
+  cursor: default;
+}
+
+.pc-grid {
+  display: grid;
+  grid-template-columns: repeat(10, 1fr);
+  gap: 4px;
+  padding: 0.6rem;
+}
+
+.pc-slot {
+  display: grid;
+  place-items: center;
+  aspect-ratio: 1;
+  padding: 0;
+  border-radius: 8px;
+  border: 2px solid rgba(180, 83, 9, 0.15);
+  background: rgba(255, 255, 255, 0.35);
+}
+
+.pc-slot.filled {
+  border-color: rgba(180, 83, 9, 0.35);
+  background: rgba(255, 255, 255, 0.75);
+  transition: transform 0.15s, border-color 0.15s;
+}
+
+.pc-slot.filled:hover {
+  transform: scale(1.12);
+  border-color: #f59e0b;
+}
+
+.pc-slot img {
+  width: 90%;
+  height: 90%;
+  object-fit: contain;
+  animation: screen-in 0.3s steps(4) both;
+}
+
+@media (max-width: 860px) {
+  .pc {
+    grid-template-columns: 1fr;
+    padding: 1.4rem 1.1rem;
+  }
+
+  .pc-grid {
+    grid-template-columns: repeat(6, 1fr);
+  }
+}

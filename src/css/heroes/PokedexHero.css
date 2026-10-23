@@ -1,0 +1,430 @@
+/* Banner da página Pokémon: o aparelho Pokédex */
+.dex {
+  --dex-red: #dc2626;
+  --dex-red-light: #ef4444;
+  --dex-red-dark: #7f1d1d;
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr minmax(300px, 440px);
+  gap: 1.5rem;
+  margin-bottom: 1.75rem;
+  padding: 1.25rem 1.5rem 1.5rem;
+  overflow: hidden;
+  border-radius: 28px 28px 28px 60px;
+  background: var(--dex-red);
+  box-shadow:
+    inset 0 -6px 0 rgba(0, 0, 0, 0.18),
+    0 8px 0 var(--dex-red-dark),
+    0 20px 40px -18px rgba(127, 29, 29, 0.6);
+  color: #fff;
+  isolation: isolate;
+  animation: fade-up 0.45s ease-out both;
+}
+
+/* Degrau característico do topo do aparelho */
+.dex::before,
+.dex::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: -1;
+}
+
+.dex::before {
+  height: 96px;
+  background: var(--dex-red-dark);
+  clip-path: polygon(0 0, 100% 0, 100% 48px, 46% 48px, 40% 96px, 0 96px);
+}
+
+.dex::after {
+  height: 92px;
+  background: linear-gradient(180deg, #f87171, var(--dex-red-light));
+  clip-path: polygon(0 0, 100% 0, 100% 44px, calc(46% - 2px) 44px, calc(40% - 2px) 92px, 0 92px);
+}
+
+.dex-left {
+  display: flex;
+  flex-direction: column;
+  gap: 1.6rem;
+}
+
+.dex-lights {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.55rem;
+  height: 62px;
+}
+
+.dex-lens {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  border: 5px solid #fff;
+  background: radial-gradient(circle at 32% 30%, #e0f2fe 0 12%, #38bdf8 30%, #0369a1 75%);
+  box-shadow:
+    0 0 0 3px var(--dex-red-dark),
+    0 0 18px rgba(56, 189, 248, 0.7);
+  animation: lens-glow 3s ease-in-out infinite;
+}
+
+.dex-led {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  border: 2px solid var(--dex-red-dark);
+}
+
+.dex-led.red {
+  background: radial-gradient(circle at 35% 35%, #fecaca, #ef4444);
+  animation: led-blink 1.6s steps(1) infinite;
+}
+
+.dex-led.yellow {
+  background: radial-gradient(circle at 35% 35%, #fef9c3, #facc15);
+}
+
+.dex-led.green {
+  background: radial-gradient(circle at 35% 35%, #dcfce7, #22c55e);
+}
+
+.dex-text {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.dex-eyebrow {
+  font-size: var(--fs-small);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  opacity: 0.85;
+}
+
+.dex h1 {
+  margin: 0;
+  font-size: var(--fs-title);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  text-shadow: 0 2px 0 var(--dex-red-dark);
+}
+
+.dex p {
+  margin: 0;
+  max-width: 340px;
+  opacity: 0.92;
+}
+
+/* Visor verde com os totais */
+.dex-readout {
+  display: inline-flex;
+  align-self: flex-start;
+  gap: 1rem;
+  margin-top: 0.8rem;
+  padding: 0.7rem 0.9rem;
+  border: 3px solid var(--dex-red-dark);
+  border-radius: 8px;
+  background: repeating-linear-gradient(0deg, rgba(0, 0, 0, 0.06) 0 1px, transparent 1px 3px), #4ade80;
+  color: #14532d;
+  font-family: var(--font-pixel);
+  font-size: 0.6rem;
+  line-height: 1.4;
+}
+
+/* ----- Lado direito: tela e controles ----- */
+.dex-right {
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
+  padding-top: 3.4rem;
+}
+
+.dex-bezel {
+  padding: 0.7rem 1rem 0.6rem;
+  background: #e5e7eb;
+  border: 3px solid var(--dex-red-dark);
+  border-radius: 12px;
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 34px 100%, 0 calc(100% - 34px));
+  color: #111827;
+}
+
+.bezel-dots {
+  display: flex;
+  justify-content: center;
+  gap: 0.6rem;
+  margin-bottom: 0.5rem;
+}
+
+.bezel-dots span {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #dc2626;
+  border: 1px solid #7f1d1d;
+}
+
+.dex-screen {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  grid-template-areas:
+    'id types'
+    'img img'
+    'name name';
+  align-items: center;
+  width: 100%;
+  height: 196px;
+  padding: 0.6rem 0.75rem;
+  border: 3px solid #374151;
+  border-radius: 6px;
+  background:
+    repeating-linear-gradient(0deg, rgba(15, 23, 42, 0.05) 0 1px, transparent 1px 3px),
+    radial-gradient(circle at 50% 55%, #ffffff, #bae6fd 75%);
+  text-align: left;
+  overflow: hidden;
+}
+
+.dex-screen:hover {
+  border-color: #111827;
+}
+
+.screen-id,
+.screen-name {
+  font-family: var(--font-pixel);
+  color: #0f172a;
+}
+
+.screen-id {
+  grid-area: id;
+  font-size: 0.6rem;
+}
+
+.screen-types {
+  grid-area: types;
+  display: flex;
+  gap: 0.25rem;
+}
+
+.dex-screen img {
+  grid-area: img;
+  justify-self: center;
+  width: 120px;
+  height: 120px;
+  object-fit: contain;
+  image-rendering: auto;
+  filter: drop-shadow(0 6px 6px rgba(15, 23, 42, 0.25));
+  animation: screen-in 0.45s steps(6) both;
+}
+
+.screen-name {
+  grid-area: name;
+  justify-self: center;
+  font-size: 0.7rem;
+  text-transform: uppercase;
+}
+
+.bezel-bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 0.5rem;
+  padding-left: 1.6rem;
+}
+
+.bezel-btn {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: #dc2626;
+  border: 2px solid #7f1d1d;
+}
+
+.speaker {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.speaker i {
+  display: block;
+  width: 34px;
+  height: 3px;
+  border-radius: 2px;
+  background: #4b5563;
+}
+
+.dex-controls {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding-left: 0.4rem;
+}
+
+.dex-round {
+  width: 40px;
+  height: 40px;
+  flex-shrink: 0;
+  padding: 0;
+  border: 3px solid #111;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 30%, #6b7280, #111827 70%);
+  box-shadow: 0 3px 0 rgba(0, 0, 0, 0.4);
+  transition: transform 0.1s;
+}
+
+.dex-round:active {
+  transform: translateY(2px);
+  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.4);
+}
+
+.dex-pills {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.dex-pills i {
+  display: block;
+  width: 42px;
+  height: 9px;
+  border-radius: 999px;
+  border: 2px solid var(--dex-red-dark);
+}
+
+.pill-red {
+  background: #f87171;
+}
+
+.pill-blue {
+  background: #60a5fa;
+}
+
+/* Direcional: só esquerda e direita funcionam */
+.dpad {
+  position: relative;
+  width: 84px;
+  height: 84px;
+  margin-left: auto;
+}
+
+.dpad::before,
+.dpad-v {
+  content: '';
+  position: absolute;
+  background: #1f2937;
+  border-radius: 6px;
+  box-shadow: 0 3px 0 rgba(0, 0, 0, 0.4);
+}
+
+.dpad::before {
+  inset: 28px 0;
+}
+
+.dpad-v {
+  inset: 0 28px;
+}
+
+.dpad button {
+  position: absolute;
+  top: 28px;
+  z-index: 1;
+  display: grid;
+  place-items: center;
+  width: 28px;
+  height: 28px;
+  padding: 0;
+  border: none;
+  background: transparent;
+  color: #9ca3af;
+}
+
+.dpad button:hover {
+  color: #fff;
+}
+
+.dpad button:active {
+  translate: 0 1px;
+}
+
+.dpad-left {
+  left: 0;
+}
+
+.dpad-right {
+  right: 0;
+}
+
+@keyframes lens-glow {
+  50% {
+    box-shadow:
+      0 0 0 3px var(--dex-red-dark),
+      0 0 30px rgba(56, 189, 248, 1);
+  }
+}
+
+@keyframes led-blink {
+  50% {
+    filter: brightness(0.6);
+  }
+}
+
+@keyframes screen-in {
+  from {
+    opacity: 0;
+    scale: 0.6;
+  }
+}
+
+@media (max-width: 860px) {
+  .dex {
+    grid-template-columns: 1fr;
+    gap: 0;
+    padding: 1rem 1rem 1.25rem;
+    border-radius: 24px 24px 24px 44px;
+  }
+
+  .dex::before {
+    clip-path: polygon(0 0, 100% 0, 100% 48px, 62% 48px, 54% 96px, 0 96px);
+  }
+
+  .dex::after {
+    clip-path: polygon(0 0, 100% 0, 100% 44px, calc(62% - 2px) 44px, calc(54% - 2px) 92px, 0 92px);
+  }
+
+  .dex-left {
+    gap: 1.25rem;
+  }
+
+  .dex-right {
+    padding-top: 1.25rem;
+  }
+
+  .dex-screen {
+    height: 176px;
+  }
+
+  .dex-screen img {
+    width: 100px;
+    height: 100px;
+  }
+
+  .dpad {
+    width: 72px;
+    height: 72px;
+  }
+
+  .dpad::before {
+    inset: 24px 0;
+  }
+
+  .dpad-v {
+    inset: 0 24px;
+  }
+
+  .dpad button {
+    top: 24px;
+    width: 24px;
+    height: 24px;
+  }
+}
