@@ -13,7 +13,8 @@
 
 .search-bar input {
   width: 100%;
-  padding: 13px 3rem 13px 3rem;
+  min-height: 48px;
+  padding: 0 3rem;
   font: inherit;
   font-size: var(--fs-body);
   border: 1px solid var(--border);
