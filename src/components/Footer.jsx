@@ -1,4 +1,4 @@
-import { Code, Database, Image } from 'lucide-react'
+import { Database, Github, Image } from './icons'
 import '../css/Footer.css'
 import Logo from './Logo'
 
@@ -21,7 +21,7 @@ function Footer() {
             <Image size={14} /> Imagens: PokéAPI
           </a>
           <a href="https://github.com/christiano-gonara/pokedex-react" target="_blank" rel="noreferrer">
-            <Code size={14} /> Repositório
+            <Github size={14} /> Repositório
           </a>
         </nav>
       </div>

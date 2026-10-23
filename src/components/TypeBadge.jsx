@@ -1,8 +1,8 @@
-import { TYPE_COLORS } from '../utils'
+import { TYPE_COLORS, textOn } from '../utils'
 
 function TypeBadge({ name }) {
   return (
-    <span className="type-badge" style={{ background: TYPE_COLORS[name] }}>
+    <span className="type-badge" style={{ background: TYPE_COLORS[name], color: textOn(TYPE_COLORS[name]) }}>
       {name}
     </span>
   )

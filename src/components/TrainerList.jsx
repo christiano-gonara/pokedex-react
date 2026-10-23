@@ -1,4 +1,4 @@
-import { Award } from 'lucide-react'
+import { Trophy } from './icons'
 import '../css/TrainerList.css'
 import { TYPE_COLORS, difficultyOf, imageUrl, portraitOf, totalStats } from '../utils'
 
@@ -25,7 +25,7 @@ function TrainerCard({ trainer, team, onSelectPokemon }) {
           <h3>{trainer.name}</h3>
           <div className="medals" title={`${trainer.badges} insígnias`}>
             {Array.from({ length: MAX_BADGES }, (_, i) => (
-              <Award key={i} size={15} className={i < trainer.badges ? 'medal on' : 'medal'} />
+              <Trophy key={i} size={15} className={i < trainer.badges ? 'medal on' : 'medal'} />
             ))}
           </div>
           <div className="hero-meta">

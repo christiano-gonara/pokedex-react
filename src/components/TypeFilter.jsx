@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
-import { Check, ChevronDown, SlidersHorizontal, X } from 'lucide-react'
+import { Check, ChevronDown, Close, Sliders } from './icons'
 import { TYPE_COLORS } from '../utils'
 
 function TypeFilter({ types, selectedType, onTypeChange }) {
@@ -31,13 +31,13 @@ function TypeFilter({ types, selectedType, onTypeChange }) {
         onClick={() => setOpen((o) => !o)}
         aria-expanded={open}
       >
-        {selectedType ? <span className="chip-dot" /> : <SlidersHorizontal size={16} />}
+        {selectedType ? <span className="chip-dot" /> : <Sliders size={16} />}
         <span>{selectedType || 'Tipo'}</span>
         <ChevronDown size={16} className={open ? 'chevron open' : 'chevron'} />
       </button>
       {selectedType && (
         <button className="clear-type" onClick={() => onTypeChange('')} aria-label="Limpar filtro de tipo">
-          <X size={14} />
+          <Close size={14} />
         </button>
       )}
 

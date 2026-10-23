@@ -1,5 +1,5 @@
-import { useEffect } from 'react'
-import { Users, X } from 'lucide-react'
+import { useEffect, useRef } from 'react'
+import { Close, Users } from './icons'
 import '../css/PokemonDetails.css'
 import StatBar from './StatBar'
 import StatRadar from './StatRadar'
@@ -7,13 +7,33 @@ import TypeBadge from './TypeBadge'
 import { STAT_LABELS, TYPE_COLORS, formatId, imageUrl } from '../utils'
 
 function PokemonDetails({ pokemon, trainers, onClose }) {
+  const closeRef = useRef(null)
+  const modalRef = useRef(null)
+
   useEffect(() => {
-    const onKey = (e) => e.key === 'Escape' && onClose()
+    const previous = document.activeElement
+    closeRef.current?.focus()
+    const onKey = (e) => {
+      if (e.key === 'Escape') onClose()
+      if (e.key !== 'Tab') return
+      // Mantém o Tab circulando dentro do modal
+      const focusable = modalRef.current.querySelectorAll('button, [href], [tabindex]:not([tabindex="-1"])')
+      const first = focusable[0]
+      const last = focusable[focusable.length - 1]
+      if (e.shiftKey && document.activeElement === first) {
+        e.preventDefault()
+        last.focus()
+      } else if (!e.shiftKey && document.activeElement === last) {
+        e.preventDefault()
+        first.focus()
+      }
+    }
     window.addEventListener('keydown', onKey)
     document.body.style.overflow = 'hidden'
     return () => {
       window.removeEventListener('keydown', onKey)
       document.body.style.overflow = ''
+      previous?.focus?.()
     }
   }, [onClose])
 
@@ -23,10 +43,15 @@ function PokemonDetails({ pokemon, trainers, onClose }) {
 
   return (
     <div className="modal-overlay" onClick={onClose}>
-      <div className="modal" style={{ '--card-color': color }} onClick={(e) => e.stopPropagation()}>
+      <div
+        ref={modalRef}
+        className="modal"
+        role="dialog"
+        aria-modal="true"
+        aria-label={pokemon.name} style={{ '--card-color': color }} onClick={(e) => e.stopPropagation()}>
         <div className="modal-hero">
-          <button className="modal-close" onClick={onClose} aria-label="Fechar">
-            <X size={20} />
+          <button ref={closeRef} className="modal-close" onClick={onClose} aria-label="Fechar">
+            <Close size={20} />
           </button>
           <span className="modal-watermark">{pokemon.name}</span>
           <img src={imageUrl(pokemon.id)} alt={pokemon.name} />

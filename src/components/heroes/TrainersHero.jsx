@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { ChevronLeft, ChevronRight } from 'lucide-react'
+import { ChevronLeft, ChevronRight, Users } from '../icons'
 import '../../css/heroes/TrainersHero.css'
 import KantoBadge, { BADGE_COUNT } from '../KantoBadge'
 import { portraitOf, totalStats } from '../../utils'
@@ -14,6 +14,8 @@ function TrainersHero({ trainers, pokemon }) {
   const team = trainer.pokemonIds.map((id) => byId[id]).filter(Boolean)
   const power = team.reduce((sum, p) => sum + totalStats(p), 0)
   const totalBadges = trainers.reduce((sum, t) => sum + t.badges, 0)
+  // Alguns treinadores do JSON têm 9 insígnias, então o teto vem dos dados
+  const maxBadges = trainers.length * Math.max(BADGE_COUNT, ...trainers.map((t) => t.badges))
 
   useEffect(() => {
     if (paused) return
@@ -29,16 +31,24 @@ function TrainersHero({ trainers, pokemon }) {
         <span className="league-eyebrow">Liga Pokémon de Kanto</span>
         <h1>Treinadores</h1>
         <p>Líderes de ginásio, rivais e vilões com suas equipes.</p>
-        <dl className="league-stats">
-          <div>
-            <dd>{trainers.length}</dd>
-            <dt>Treinadores</dt>
+        <div className="hud" role="group" aria-label={`${trainers.length} treinadores, ${totalBadges} de ${maxBadges} insígnias`}>
+          <div className="hud-head">
+            <span>LIGA KANTO</span>
+            <span className="hud-level">
+              <Users size={12} />
+              {trainers.length}
+            </span>
           </div>
-          <div>
-            <dd>{totalBadges}</dd>
-            <dt>Insígnias</dt>
+          <div className="hud-bar">
+            <span className="hud-tag">INS</span>
+            <span className="hud-track">
+              <i style={{ width: `${(totalBadges / maxBadges) * 100}%` }} />
+            </span>
           </div>
-        </dl>
+          <span className="hud-count">
+            {totalBadges}/{maxBadges}
+          </span>
+        </div>
       </div>
 
       <div className="tcard-area">

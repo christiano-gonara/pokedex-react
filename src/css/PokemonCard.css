@@ -48,6 +48,35 @@
   transition: transform 0.3s;
 }
 
+/* Skeleton enquanto a imagem da PokéAPI carrega */
+.card-top.loading img {
+  opacity: 0;
+}
+
+.card-top.loading::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 96px;
+  height: 96px;
+  margin: -48px 0 0 -48px;
+  border-radius: 50%;
+  background: color-mix(in srgb, var(--card-color) 22%, transparent);
+  animation: skeleton-pulse 1.1s ease-in-out infinite;
+}
+
+.card-top img {
+  transition: transform 0.3s, opacity 0.25s;
+}
+
+@keyframes skeleton-pulse {
+  50% {
+    opacity: 0.4;
+    scale: 0.9;
+  }
+}
+
 .pokemon-card:hover .card-top img {
   transform: scale(1.08) translateY(-4px);
 }

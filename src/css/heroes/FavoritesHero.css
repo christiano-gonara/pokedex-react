@@ -40,37 +40,52 @@
   letter-spacing: -0.02em;
 }
 
-.pc p {
-  margin: 0;
-  max-width: 340px;
-  opacity: 0.88;
-}
-
-.pc-stats {
-  display: flex;
-  gap: 0.6rem;
+/* Caixa de diálogo dos jogos, com a seta piscando no canto */
+.pc-dialog {
+  position: relative;
+  max-width: 360px;
   margin: 0.9rem 0 0;
-}
-
-.pc-stats div {
-  padding: 0.5rem 0.9rem;
-  border-radius: 14px;
-  border: 1px solid rgba(253, 224, 71, 0.3);
-  background: rgba(255, 255, 255, 0.08);
-}
-
-.pc-stats dd {
-  margin: 0;
+  padding: 0.9rem 1rem 1.1rem;
+  border: 3px solid #241f19;
+  border-radius: 8px;
+  background: #fffdf8;
+  color: #241f19;
+  box-shadow:
+    inset 0 0 0 2px #e7dac4,
+    0 4px 0 #083c38;
   font-family: var(--font-pixel);
-  font-size: 0.85rem;
-  color: #fde047;
+  font-size: 0.55rem;
+  line-height: 2;
 }
 
-.pc-stats dt {
-  margin-top: 0.3rem;
-  font-size: var(--fs-small);
-  font-weight: 600;
-  opacity: 0.8;
+.pc-speaker {
+  position: absolute;
+  top: -0.75rem;
+  left: 0.8rem;
+  padding: 3px 6px;
+  border-radius: 3px;
+  background: #0f766e;
+  color: #fde047;
+  font-size: 0.45rem;
+  line-height: 1.4;
+}
+
+.pc-dialog::after {
+  content: '';
+  position: absolute;
+  right: 0.75rem;
+  bottom: 0.5rem;
+  width: 10px;
+  height: 6px;
+  background: #dc2626;
+  clip-path: polygon(0 0, 100% 0, 50% 100%);
+  animation: dialog-arrow 0.9s steps(1) infinite;
+}
+
+@keyframes dialog-arrow {
+  50% {
+    translate: 0 2px;
+  }
 }
 
 /* ----- Caixa ----- */

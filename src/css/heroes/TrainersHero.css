@@ -46,31 +46,75 @@
   opacity: 0.85;
 }
 
-.league-stats {
-  display: flex;
-  gap: 0.6rem;
-  margin: 0.9rem 0 0;
-}
-
-.league-stats div {
-  padding: 0.5rem 0.9rem;
-  border-radius: 14px;
-  border: 1px solid rgba(253, 230, 138, 0.3);
-  background: rgba(255, 255, 255, 0.08);
-}
-
-.league-stats dd {
-  margin: 0;
+/* Caixa de status das batalhas, com a barra de insígnias no lugar do HP */
+.hud {
+  align-self: flex-start;
+  width: min(100%, 280px);
+  margin-top: 0.9rem;
+  padding: 0.6rem 0.8rem 0.5rem;
+  border: 3px solid #241f19;
+  border-radius: 8px 8px 8px 22px;
+  background: #fffdf8;
+  color: #241f19;
+  box-shadow: 0 4px 0 #0f0d2e;
   font-family: var(--font-pixel);
-  font-size: 0.85rem;
-  color: #fde68a;
 }
 
-.league-stats dt {
-  margin-top: 0.3rem;
-  font-size: var(--fs-small);
-  font-weight: 600;
-  opacity: 0.8;
+.hud-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.55rem;
+}
+
+.hud-level {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+
+.hud-bar {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  margin-top: 0.55rem;
+  padding: 3px 4px 3px 5px;
+  border-radius: 999px;
+  background: #3f3a33;
+}
+
+.hud-tag {
+  font-size: 0.45rem;
+  color: #fde047;
+}
+
+.hud-track {
+  flex: 1;
+  height: 7px;
+  border-radius: 999px;
+  background: #fff;
+  overflow: hidden;
+}
+
+.hud-track i {
+  display: block;
+  height: 100%;
+  background: #eab308;
+  box-shadow: inset 0 -2px 0 #a16207;
+  animation: hud-fill 1s steps(12) both;
+}
+
+.hud-count {
+  display: block;
+  margin-top: 0.4rem;
+  font-size: 0.55rem;
+  text-align: right;
+}
+
+@keyframes hud-fill {
+  from {
+    width: 0;
+  }
 }
 
 /* ----- Cartão de Treinador ----- */

@@ -19,6 +19,22 @@ export const TYPE_COLORS = {
   Steel: '#b7b7ce',
 }
 
+// Texto escuro ou branco, o que tiver mais contraste com a cor do tipo (WCAG)
+const luminance = (hex) => {
+  const [r, g, b] = [1, 3, 5].map((i) => {
+    const c = parseInt(hex.slice(i, i + 2), 16) / 255
+    return c <= 0.03928 ? c / 12.92 : ((c + 0.055) / 1.055) ** 2.4
+  })
+  return 0.2126 * r + 0.7152 * g + 0.0722 * b
+}
+
+export const textOn = (hex) => {
+  const l = luminance(hex)
+  const withWhite = 1.05 / (l + 0.05)
+  const withDark = (l + 0.05) / (luminance('#241f19') + 0.05)
+  return withWhite >= withDark ? '#fff' : '#241f19'
+}
+
 export const STAT_LABELS = {
   hp: 'HP',
   attack: 'Ataque',

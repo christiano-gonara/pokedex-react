@@ -1,4 +1,4 @@
-import { Search, X } from 'lucide-react'
+import { Close, Search } from './icons'
 import '../css/SearchBar.css'
 
 function SearchBar({ value, onChange }) {
@@ -13,7 +13,7 @@ function SearchBar({ value, onChange }) {
       />
       {value && (
         <button className="search-clear" onClick={() => onChange('')} aria-label="Limpar pesquisa">
-          <X size={18} />
+          <Close size={18} />
         </button>
       )}
     </div>

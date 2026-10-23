@@ -1,4 +1,4 @@
-import { ChevronDown, ChevronUp, Star } from 'lucide-react'
+import { ChevronDown, ChevronUp, StarFilled } from './icons'
 import '../css/PokemonTable.css'
 import TypeBadge from './TypeBadge'
 import { STAT_SHORT, formatId, imageUrl, totalStats } from '../utils'
@@ -55,7 +55,7 @@ function PokemonTable({ pokemon, favorites, sortBy, reversed, onSort, onSelect }
                 <div className="name-cell">
                   <img src={imageUrl(p.id)} alt="" loading="lazy" />
                   <span>{p.name}</span>
-                  {favorites.includes(p.id) && <Star size={13} className="fav-mark" aria-label="Favorito" />}
+                  {favorites.includes(p.id) && <StarFilled size={13} className="fav-mark" aria-label="Favorito" />}
                 </div>
               </td>
               <td>
