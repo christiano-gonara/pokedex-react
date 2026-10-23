@@ -18,7 +18,7 @@ function Header({ view, onViewChange, darkMode, onToggleDark, favoritesCount }) 
         </div>
         <nav className="tabs">
           {TABS.map(({ id, label, icon: Icon }) => (
-            <button key={id} className={view === id ? 'active' : ''} onClick={() => onViewChange(id)}>
+            <button key={id} data-tab={id} className={view === id ? 'active' : ''} onClick={() => onViewChange(id)}>
               <Icon size={16} />
               <span className="tab-label">{label}</span>
               {id === 'favorites' && favoritesCount > 0 && <span className="count">{favoritesCount}</span>}

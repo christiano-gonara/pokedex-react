@@ -3,6 +3,7 @@ import './css/App.css'
 import data from './data/pokedex-data.json'
 import Header from './components/Header'
 import Footer from './components/Footer'
+import PageHero from './components/PageHero'
 import SearchBar from './components/SearchBar'
 import Filters from './components/Filters'
 import PokemonList from './components/PokemonList'
@@ -11,12 +12,6 @@ import TrainerList from './components/TrainerList'
 
 const { pokemon: allPokemon, types, trainers } = data
 const realTypes = types.filter((t) => t.id !== 0)
-
-const PAGE_TITLES = {
-  pokedex: 'Encontre seu Pokémon',
-  trainers: 'Treinadores',
-  favorites: 'Seus favoritos',
-}
 
 function loadList(key) {
   try {
@@ -64,18 +59,17 @@ function App() {
     })
   }, [search, selectedType, sortBy, view, favorites])
 
+  const favoritePokemon = useMemo(
+    () => favorites.map((id) => allPokemon.find((p) => p.id === id)).filter(Boolean),
+    [favorites],
+  )
+
   const toggleFavorite = (id) =>
     setFavorites((prev) => (prev.includes(id) ? prev.filter((f) => f !== id) : [...prev, id]))
 
   const closeDetails = useCallback(() => setSelected(null), [])
 
   const pickRandom = () => setSelected(allPokemon[Math.floor(Math.random() * allPokemon.length)])
-
-  const subtitle = {
-    pokedex: `${visiblePokemon.length} de ${allPokemon.length} Pokémon`,
-    favorites: `${visiblePokemon.length} de ${favorites.length} Pokémon`,
-    trainers: `${trainers.length} treinadores e suas equipes`,
-  }[view]
 
   return (
     <div className="app">
@@ -87,10 +81,13 @@ function App() {
         favoritesCount={favorites.length}
       />
       <main>
-        <section className="page-intro">
-          <h1>{PAGE_TITLES[view]}</h1>
-          <p>{subtitle}</p>
-        </section>
+        <PageHero
+          view={view}
+          pokemonCount={allPokemon.length}
+          typeCount={realTypes.length}
+          trainers={trainers}
+          favorites={favoritePokemon}
+        />
 
         {view === 'trainers' && (
           <TrainerList trainers={trainers} pokemon={allPokemon} onSelectPokemon={setSelected} />
@@ -109,6 +106,13 @@ function App() {
                 onRandom={pickRandom}
               />
             </div>
+            {visiblePokemon.length > 0 && (
+              <p className="results-count">
+                {visiblePokemon.length === 1 ? '1 Pokémon' : `${visiblePokemon.length} Pokémon`}
+                {selectedType && ` do tipo ${selectedType}`}
+                {search.trim() && ` para "${search.trim()}"`}
+              </p>
+            )}
             <PokemonList
               pokemon={visiblePokemon}
               favorites={favorites}

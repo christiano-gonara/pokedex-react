@@ -52,3 +52,13 @@ export function difficultyOf(team) {
   if (avg < 470) return 'Médio'
   return 'Difícil'
 }
+
+const portraits = import.meta.glob('./assets/images/trainers/*.png', { eager: true, import: 'default' })
+
+const slug = (name) =>
+  name
+    .toLowerCase()
+    .replace(/[^a-z]+/g, '-')
+    .replace(/^-|-$/g, '')
+
+export const portraitOf = (name) => portraits[`./assets/images/trainers/${slug(name)}.png`]

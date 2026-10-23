@@ -1,16 +1,6 @@
 import { Award } from 'lucide-react'
 import '../css/TrainerList.css'
-import { TYPE_COLORS, difficultyOf, imageUrl, totalStats } from '../utils'
-
-const portraits = import.meta.glob('../assets/images/trainers/*.png', { eager: true, import: 'default' })
-
-const slug = (name) =>
-  name
-    .toLowerCase()
-    .replace(/[^a-z]+/g, '-')
-    .replace(/^-|-$/g, '')
-
-const portraitOf = (name) => portraits[`../assets/images/trainers/${slug(name)}.png`]
+import { TYPE_COLORS, difficultyOf, imageUrl, portraitOf, totalStats } from '../utils'
 
 function mainType(team) {
   const counts = {}
