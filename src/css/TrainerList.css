@@ -1,15 +1,17 @@
 .trainer-list {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
   gap: 1.25rem;
 }
 
 .trainer-card {
   --card-color: #999;
+  display: flex;
+  flex-direction: column;
   background: var(--surface);
   border: 1px solid var(--border);
   border-radius: var(--radius);
-  padding: 1.25rem;
+  overflow: hidden;
   transition: box-shadow 0.25s, transform 0.25s;
   animation: fade-up 0.4s ease-out both;
 }
@@ -19,57 +21,143 @@
   box-shadow: var(--shadow);
 }
 
-.trainer-header {
-  display: flex;
-  align-items: center;
-  gap: 0.85rem;
-  margin-bottom: 1rem;
+/* ----- Banner ----- */
+.trainer-banner {
+  position: relative;
+  min-height: 150px;
+  padding: 1.1rem 1.25rem;
+  overflow: hidden;
+  color: #fff;
+  background:
+    radial-gradient(circle at 85% 80%, rgba(255, 255, 255, 0.28), transparent 45%),
+    linear-gradient(150deg, var(--card-color), color-mix(in srgb, var(--card-color) 45%, #111));
+  isolation: isolate;
+}
+
+.trainer-ace {
+  position: absolute;
+  right: -14px;
+  bottom: -22px;
+  width: 150px;
+  height: 150px;
+  object-fit: contain;
+  z-index: -1;
+  filter: drop-shadow(0 10px 14px rgba(0, 0, 0, 0.35));
+  transition: transform 0.35s;
+}
+
+.trainer-card:hover .trainer-ace {
+  transform: scale(1.08) rotate(-4deg);
 }
 
 .avatar {
   display: grid;
   place-items: center;
-  width: 48px;
-  height: 48px;
+  width: 44px;
+  height: 44px;
+  margin-bottom: 0.7rem;
   border-radius: 14px;
-  background: linear-gradient(140deg, var(--card-color), color-mix(in srgb, var(--card-color) 55%, #000));
-  color: #fff;
+  background: rgba(255, 255, 255, 0.22);
+  backdrop-filter: blur(6px);
+  border: 1px solid rgba(255, 255, 255, 0.35);
   font-family: var(--font-display);
   font-weight: 800;
-  font-size: 1.3rem;
+  font-size: 1.2rem;
 }
 
-.trainer-header h3 {
+.trainer-banner h3 {
   margin: 0;
   font-size: var(--fs-heading);
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
 }
 
 .badges {
   display: inline-flex;
   align-items: center;
   gap: 0.3rem;
-  margin-top: 0.15rem;
+  margin-top: 0.2rem;
   font-size: var(--fs-label);
+  opacity: 0.9;
+}
+
+.defeated-tag {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  padding: 0.25rem 0.65rem;
+  border-radius: 999px;
+  background: #fff;
+  color: #b07a00;
+  font-size: var(--fs-small);
+  font-weight: 700;
+}
+
+/* ----- Corpo ----- */
+.trainer-body {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  flex: 1;
+  padding: 1.1rem 1.25rem 1.25rem;
+}
+
+.trainer-stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.5rem;
+  margin: 0;
+}
+
+.trainer-stats div {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.trainer-stats dt {
+  font-size: var(--fs-small);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
   color: var(--muted);
 }
 
+.trainer-stats dd {
+  margin: 0;
+  font-family: var(--font-display);
+  font-weight: 700;
+}
+
+.difficulty.fácil {
+  color: #16a34a;
+}
+
+.difficulty.médio {
+  color: #d97706;
+}
+
+.difficulty.difícil {
+  color: var(--accent);
+}
+
 .trainer-team {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(76px, 1fr));
-  gap: 0.5rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
 }
 
 .trainer-team button {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 0.15rem;
-  padding: 0.4rem 0.2rem 0.5rem;
+  display: grid;
+  place-items: center;
+  width: 46px;
+  height: 46px;
+  padding: 0;
   border: 1px solid transparent;
-  border-radius: 14px;
+  border-radius: 50%;
   background: var(--surface-2);
-  font-size: var(--fs-small);
-  font-weight: 500;
   transition: border-color 0.2s, transform 0.2s;
 }
 
@@ -79,7 +167,28 @@
 }
 
 .trainer-team img {
-  width: 56px;
-  height: 56px;
+  width: 40px;
+  height: 40px;
   object-fit: contain;
+}
+
+.challenge-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.45rem;
+  margin-top: auto;
+  padding: 13px 18px;
+  border: none;
+  border-radius: 999px;
+  background: var(--text);
+  color: var(--bg);
+  font-size: var(--fs-button);
+  font-weight: 700;
+  transition: transform 0.15s, box-shadow 0.2s;
+}
+
+.challenge-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 10px 22px -8px color-mix(in srgb, var(--card-color) 80%, transparent);
 }
