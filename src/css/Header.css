@@ -19,17 +19,17 @@
 .header-inner {
   max-width: 1240px;
   margin: 0 auto;
-  padding: 0.7rem 1.25rem;
+  padding: var(--space-3) var(--space-5);
   display: flex;
   align-items: center;
-  gap: 1rem;
+  gap: var(--space-4);
 }
 
 /* ----- Marca ----- */
 .brand {
   display: flex;
   align-items: center;
-  gap: 0.65rem;
+  gap: var(--space-3);
   color: #fff;
 }
 
@@ -46,8 +46,10 @@
 }
 
 .brand-name {
-  font-family: var(--font-pixel);
-  font-size: 0.8rem;
+  font-family: var(--font-display);
+  font-size: var(--fs-heading);
+  font-weight: 800;
+  letter-spacing: -0.01em;
   text-shadow: 2px 2px 0 #7f1d1d;
 }
 
@@ -56,8 +58,9 @@
   border-radius: 3px;
   background: #fde047;
   color: var(--menu-ink);
-  font-family: var(--font-pixel);
-  font-size: 0.45rem;
+  font-size: var(--fs-small);
+  font-weight: 700;
+  letter-spacing: 0.08em;
 }
 
 /* ----- Menu: caixa de diálogo com cursor ----- */
@@ -79,15 +82,14 @@
   position: relative;
   display: inline-flex;
   align-items: center;
-  gap: 0.5rem;
-  padding: 0.55rem 0.8rem 0.55rem 1.45rem;
+  gap: var(--space-2);
+  padding: var(--space-2) var(--space-3) var(--space-2) var(--space-5);
   border: none;
   border-radius: 3px;
   background: transparent;
   color: #7d7160;
-  font-family: var(--font-pixel);
-  font-size: 0.55rem;
-  text-transform: uppercase;
+  font-size: var(--fs-label);
+  font-weight: 600;
   transition: color 0.15s, background 0.15s;
 }
 
@@ -142,7 +144,9 @@
   border-radius: 3px;
   background: var(--menu-ink);
   color: #fde047;
-  font-size: 0.45rem;
+  font-size: var(--fs-small);
+  font-weight: 700;
+  line-height: 1;
 }
 
 /* ----- Botão de tema ----- */
@@ -173,8 +177,8 @@
 
 @media (max-width: 760px) {
   .header-inner {
-    gap: 0.6rem;
-    padding: 0.6rem 1rem;
+    gap: var(--space-2);
+    padding: var(--space-2) var(--space-4);
   }
 
   .brand-name,
@@ -188,11 +192,11 @@
   }
 
   .menu-item {
-    padding: 0.55rem 0.65rem;
+    padding: var(--space-2) var(--space-3);
   }
 
   .menu-item.active {
-    padding-left: 1.3rem;
+    padding-left: var(--space-5);
   }
 
   .menu-item:not(.active)::before {

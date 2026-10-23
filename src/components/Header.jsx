@@ -14,7 +14,7 @@ function Header({ view, onViewChange, darkMode, onToggleDark, favoritesCount }) 
       <div className="header-inner">
         <div className="brand">
           <Logo />
-          <span className="brand-name">POKéDEX</span>
+          <span className="brand-name">Pokédex</span>
           <span className="brand-region">KANTO</span>
         </div>
 

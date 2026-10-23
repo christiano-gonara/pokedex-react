@@ -5,7 +5,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 1rem;
+  padding: var(--space-4);
   background: rgba(8, 10, 15, 0.55);
   backdrop-filter: blur(6px);
   animation: fade 0.2s ease-out;
@@ -71,11 +71,11 @@
 }
 
 .modal-body {
-  padding: 1.25rem 1.6rem 1.75rem;
+  padding: var(--space-5) var(--space-5) var(--space-6);
 }
 
 .modal-body h2 {
-  margin: 0.1rem 0 0.6rem;
+  margin: var(--space-1) 0 var(--space-2);
   font-size: var(--fs-title);
   font-weight: 700;
   letter-spacing: -0.02em;
@@ -84,8 +84,8 @@
 .section-title {
   display: flex;
   align-items: center;
-  gap: 0.4rem;
-  margin: 1.5rem 0 0.4rem;
+  gap: var(--space-2);
+  margin: var(--space-5) 0 var(--space-2);
   font-size: var(--fs-label);
   font-weight: 600;
   text-transform: uppercase;
@@ -95,7 +95,7 @@
 
 .stats-layout {
   display: grid;
-  gap: 1rem;
+  gap: var(--space-4);
 }
 
 @media (min-width: 800px) {
@@ -106,15 +106,15 @@
   .stats-layout {
     grid-template-columns: 260px 1fr;
     align-items: center;
-    gap: 2rem;
+    gap: var(--space-6);
   }
 }
 
 .stat-total {
   display: flex;
   justify-content: space-between;
-  margin-top: 0.8rem;
-  padding-top: 0.8rem;
+  margin-top: var(--space-3);
+  padding-top: var(--space-3);
   border-top: 1px solid var(--border);
 }
 
@@ -130,11 +130,11 @@
 .owner-chips {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.4rem;
+  gap: var(--space-2);
 }
 
 .owner-chip {
-  padding: 0.35rem 0.8rem;
+  padding: var(--space-1) var(--space-3);
   border-radius: 999px;
   background: var(--surface-2);
   font-size: var(--fs-label);

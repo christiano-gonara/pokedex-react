@@ -1,7 +1,7 @@
 .trainer-list {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-  gap: 1.25rem;
+  gap: var(--space-5);
 }
 
 .trainer-card {
@@ -28,7 +28,7 @@
   align-items: flex-end;
   justify-content: space-between;
   min-height: 176px;
-  padding: 1.1rem 0 0 1.2rem;
+  padding: var(--space-4) 0 0 var(--space-4);
   overflow: hidden;
   color: #fff;
   background:
@@ -70,8 +70,8 @@
 .hero-info {
   display: flex;
   flex-direction: column;
-  gap: 0.35rem;
-  padding-bottom: 1.1rem;
+  gap: var(--space-1);
+  padding-bottom: var(--space-4);
   min-width: 0;
   text-shadow: 0 1px 3px rgba(0, 0, 0, 0.35);
 }
@@ -96,7 +96,7 @@
 .medals {
   display: flex;
   gap: 2px;
-  margin-top: 0.15rem;
+  margin-top: var(--space-1);
 }
 
 .medal {
@@ -111,13 +111,13 @@
 .hero-meta {
   display: flex;
   align-items: center;
-  gap: 0.5rem;
-  margin-top: 0.35rem;
+  gap: var(--space-2);
+  margin-top: var(--space-1);
 }
 
 .level,
 .power {
-  padding: 0.25rem 0.65rem;
+  padding: var(--space-1) var(--space-3);
   border-radius: 999px;
   background: rgba(255, 255, 255, 0.18);
   backdrop-filter: blur(6px);
@@ -132,7 +132,7 @@
   display: inline-block;
   width: 7px;
   height: 7px;
-  margin-right: 0.35rem;
+  margin-right: var(--space-1);
   border-radius: 50%;
   background: currentColor;
   vertical-align: 1px;
@@ -154,7 +154,7 @@
   flex-shrink: 0;
   width: 150px;
   height: 150px;
-  margin: 0 0.25rem -4px 0;
+  margin: 0 var(--space-1) -4px 0;
   image-rendering: pixelated;
   filter: drop-shadow(0 6px 8px rgba(0, 0, 0, 0.3));
   transition: transform 0.35s cubic-bezier(0.3, 1.6, 0.5, 1);
@@ -168,8 +168,8 @@
 .trainer-team {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 0.5rem;
-  padding: 1rem;
+  gap: var(--space-2);
+  padding: var(--space-4);
 }
 
 .trainer-team button,
@@ -184,9 +184,9 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 0.1rem;
+  gap: var(--space-1);
   min-width: 0;
-  padding: 0.3rem;
+  padding: var(--space-1);
   border: 1px solid transparent;
   background:
     radial-gradient(circle at 50% 40%, color-mix(in srgb, var(--tile-color) 38%, transparent), transparent 68%),
