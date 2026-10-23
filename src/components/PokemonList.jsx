@@ -4,10 +4,13 @@ import PokemonCard from './PokemonCard'
 
 function PokemonList({ pokemon, favorites, onSelect, onToggleFavorite }) {
   if (pokemon.length === 0) {
-    return <p className="empty">
-        <SearchX size={32} />
-        Nenhum Pokémon encontrado.
-      </p>
+    return (
+      <div className="empty">
+        <SearchX size={40} strokeWidth={1.5} />
+        <h3>Nenhum Pokémon encontrado</h3>
+        <p>Tente outro nome, ID ou tipo.</p>
+      </div>
+    )
   }
 
   return (

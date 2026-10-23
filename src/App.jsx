@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from 'react'
+import { useCallback, useEffect, useMemo, useState } from 'react'
 import './css/App.css'
 import data from './data/pokedex-data.json'
 import Header from './components/Header'
@@ -10,6 +10,12 @@ import TrainerList from './components/TrainerList'
 
 const { pokemon: allPokemon, types, trainers } = data
 const realTypes = types.filter((t) => t.id !== 0)
+
+const PAGE_TITLES = {
+  pokedex: 'Encontre seu Pokémon',
+  trainers: 'Treinadores',
+  favorites: 'Seus favoritos',
+}
 
 function loadFavorites() {
   try {
@@ -26,7 +32,7 @@ function App() {
   const [sortBy, setSortBy] = useState('id')
   const [selected, setSelected] = useState(null)
   const [favorites, setFavorites] = useState(loadFavorites)
-  const [darkMode, setDarkMode] = useState(false)
+  const [darkMode, setDarkMode] = useState(() => window.matchMedia('(prefers-color-scheme: dark)').matches)
 
   useEffect(() => {
     document.documentElement.dataset.theme = darkMode ? 'dark' : 'light'
@@ -54,6 +60,8 @@ function App() {
   const toggleFavorite = (id) =>
     setFavorites((prev) => (prev.includes(id) ? prev.filter((f) => f !== id) : [...prev, id]))
 
+  const closeDetails = useCallback(() => setSelected(null), [])
+
   const pickRandom = () => setSelected(allPokemon[Math.floor(Math.random() * allPokemon.length)])
 
   return (
@@ -66,6 +74,14 @@ function App() {
         favoritesCount={favorites.length}
       />
       <main>
+        <section className="page-intro">
+          <h1>{PAGE_TITLES[view]}</h1>
+          <p>
+            {view === 'trainers'
+              ? `${trainers.length} treinadores e suas equipes`
+              : `${visiblePokemon.length} de ${view === 'favorites' ? favorites.length : allPokemon.length} Pokémon`}
+          </p>
+        </section>
         {view === 'trainers' ? (
           <TrainerList trainers={trainers} pokemon={allPokemon} onSelectPokemon={setSelected} />
         ) : (
@@ -88,7 +104,7 @@ function App() {
           </>
         )}
       </main>
-      {selected && <PokemonDetails pokemon={selected} trainers={trainers} onClose={() => setSelected(null)} />}
+      {selected && <PokemonDetails pokemon={selected} trainers={trainers} onClose={closeDetails} />}
     </div>
   )
 }

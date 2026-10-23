@@ -1,72 +1,166 @@
 .pokemon-card {
   --card-color: #999;
-  position: relative;
+  display: flex;
+  flex-direction: column;
   background: var(--surface);
-  border-top: 6px solid var(--card-color);
-  border-radius: 14px;
-  padding: 1rem;
-  text-align: center;
-  box-shadow: var(--shadow);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
   cursor: pointer;
-  transition: transform 0.2s;
-  background-image: radial-gradient(circle at 50% 25%, color-mix(in srgb, var(--card-color) 30%, transparent), transparent 60%);
+  transition: transform 0.25s, box-shadow 0.25s, border-color 0.25s;
+  animation: fade-up 0.4s ease-out both;
 }
 
 .pokemon-card:hover {
-  transform: translateY(-6px) scale(1.02);
+  transform: translateY(-6px);
+  box-shadow: var(--shadow);
+  border-color: color-mix(in srgb, var(--card-color) 50%, var(--border));
 }
 
-.pokemon-card img {
-  width: 120px;
-  height: 120px;
-  object-fit: contain;
+.card-top {
+  position: relative;
+  display: grid;
+  place-items: center;
+  height: 170px;
+  background:
+    radial-gradient(circle at 50% 60%, color-mix(in srgb, var(--card-color) 45%, transparent), transparent 65%),
+    color-mix(in srgb, var(--card-color) 14%, var(--surface));
 }
 
-.pokemon-card h3 {
-  margin: 0.3rem 0;
-}
-
-.card-id {
+.card-watermark {
   position: absolute;
-  top: 0.6rem;
-  left: 0.8rem;
-  color: var(--muted);
-  font-weight: 700;
-  font-size: 0.85rem;
+  top: 0.4rem;
+  left: 0.9rem;
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 2.6rem;
+  color: color-mix(in srgb, var(--card-color) 30%, transparent);
+  line-height: 1;
+  user-select: none;
+}
+
+.card-top img {
+  position: relative;
+  width: 140px;
+  height: 140px;
+  object-fit: contain;
+  filter: drop-shadow(0 8px 10px rgba(0, 0, 0, 0.2));
+  transition: transform 0.3s;
+}
+
+.pokemon-card:hover .card-top img {
+  transform: scale(1.08) translateY(-4px);
 }
 
 .fav-btn {
   position: absolute;
-  top: 0.4rem;
-  right: 0.5rem;
-  background: none;
+  top: 0.7rem;
+  right: 0.7rem;
+  z-index: 1;
+  display: grid;
+  place-items: center;
+  width: 34px;
+  height: 34px;
   border: none;
-  font-size: 1.3rem;
-  color: var(--text);
+  border-radius: 50%;
+  background: color-mix(in srgb, var(--surface) 75%, transparent);
+  backdrop-filter: blur(6px);
+  color: var(--muted);
+  transition: transform 0.2s, color 0.2s;
 }
 
-.card-types {
-  display: flex;
-  justify-content: center;
-  gap: 0.3rem;
+.fav-btn:hover {
+  transform: scale(1.12);
+}
+
+.fav-btn.active {
+  color: #f5b301;
+}
+
+.card-body {
+  padding: 0.9rem 1rem 1.1rem;
+}
+
+.card-body h3 {
+  margin: 0.1rem 0 0.5rem;
+  font-size: var(--fs-heading);
+  font-weight: 700;
 }
 
 .card-stats {
   list-style: none;
-  padding: 0;
-  margin: 0.8rem 0 0;
+  padding: 0.8rem 0 0;
+  margin: 0.9rem 0 0;
+  border-top: 1px solid var(--border);
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 0.2rem 0.8rem;
-  font-size: 0.78rem;
-  color: var(--muted);
+  gap: 0.35rem;
 }
 
 .card-stats li {
-  display: flex;
-  justify-content: space-between;
+  display: grid;
+  grid-template-columns: 30px 1fr 28px;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: var(--fs-small);
 }
 
-.card-stats strong {
-  color: var(--text);
+.mini-label {
+  color: var(--muted);
+  font-weight: 600;
+}
+
+.mini-track {
+  height: 5px;
+  border-radius: 999px;
+  background: var(--surface-2);
+  overflow: hidden;
+}
+
+.mini-fill {
+  display: block;
+  height: 100%;
+  border-radius: inherit;
+  background: var(--card-color);
+}
+
+.mini-value {
+  text-align: right;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+}
+
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+}
+
+@media (max-width: 520px) {
+  .card-top {
+    height: 130px;
+  }
+
+  .card-top img {
+    width: 100px;
+    height: 100px;
+  }
+
+  .card-watermark {
+    font-size: 1.8rem;
+  }
+
+  .card-body {
+    padding: 0.7rem 0.75rem 0.9rem;
+  }
+
+  .card-body h3 {
+    font-size: var(--fs-body);
+  }
+
+  .card-stats li {
+    grid-template-columns: 26px 1fr 22px;
+    gap: 0.35rem;
+    font-size: 0.66rem;
+  }
 }

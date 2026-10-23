@@ -1,55 +1,116 @@
 .filters {
-  margin: 1rem 0;
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  margin: 1.25rem 0 1.75rem;
 }
 
-.type-buttons {
+.type-chips {
   display: flex;
   flex-wrap: wrap;
   gap: 0.4rem;
+  flex: 1;
 }
 
-.type-buttons button {
-  --type-color: #555;
-  border: 2px solid var(--type-color);
+.chip {
+  --type-color: var(--text);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  border-radius: 999px;
+  padding: 0.35rem 0.8rem;
+  font-size: var(--fs-label);
+  font-weight: 500;
+  transition: background 0.2s, color 0.2s, border-color 0.2s;
+}
+
+.chip-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--type-color);
+}
+
+.chip:hover {
+  border-color: var(--type-color);
+}
+
+.chip.active {
+  background: var(--type-color);
+  border-color: var(--type-color);
+  color: #fff;
+}
+
+.chip:not([style]).active {
+  color: var(--bg);
+}
+
+.chip.active .chip-dot {
+  background: #fff;
+}
+
+.toolbar-actions {
+  display: flex;
+  gap: 0.5rem;
+  flex-shrink: 0;
+}
+
+.sort {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0 0.4rem 0 0.8rem;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  background: var(--surface);
+  color: var(--muted);
+}
+
+.sort select {
+  border: none;
   background: transparent;
   color: var(--text);
-  border-radius: 999px;
-  padding: 0.25rem 0.8rem;
-  font-size: 0.85rem;
-  transition: all 0.2s;
-}
-
-.type-buttons button:hover,
-.type-buttons button.active {
-  background: var(--type-color);
-  color: #fff;
-}
-
-.filters-row {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 1rem;
-  margin-top: 0.8rem;
-}
-
-.filters-row select {
-  padding: 0.35rem;
-  border-radius: 8px;
-  background: var(--surface);
-  color: var(--text);
-}
-
-.random-btn {
-  background: var(--accent);
-  color: #fff;
-  border: none;
-  border-radius: 8px;
-  padding: 0.45rem 0.9rem;
+  font: inherit;
+  font-size: var(--fs-label);
+  padding: 0.55rem 0.2rem;
+  outline: none;
+  cursor: pointer;
 }
 
 .random-btn {
   display: inline-flex;
   align-items: center;
-  gap: 0.35rem;
+  gap: 0.4rem;
+  border: none;
+  border-radius: 999px;
+  padding: 0.55rem 1.1rem;
+  background: var(--text);
+  color: var(--bg);
+  font-size: var(--fs-label);
+  font-weight: 700;
+  transition: transform 0.15s;
+}
+
+.random-btn:hover {
+  transform: translateY(-2px);
+}
+
+@media (max-width: 860px) {
+  .filters {
+    flex-direction: column;
+  }
+
+  .type-chips {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    width: 100%;
+    padding-bottom: 0.4rem;
+    scrollbar-width: none;
+  }
+
+  .chip {
+    flex-shrink: 0;
+  }
 }

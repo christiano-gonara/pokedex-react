@@ -1,14 +1,22 @@
+import { Search, X } from 'lucide-react'
 import '../css/SearchBar.css'
 
 function SearchBar({ value, onChange }) {
   return (
-    <input
-      className="search-bar"
-      type="text"
-      placeholder="Pesquisar Pokémon por nome ou ID..."
-      value={value}
-      onChange={(e) => onChange(e.target.value)}
-    />
+    <div className="search-bar">
+      <Search size={20} className="search-icon" />
+      <input
+        type="text"
+        placeholder="Pesquisar por nome ou ID..."
+        value={value}
+        onChange={(e) => onChange(e.target.value)}
+      />
+      {value && (
+        <button className="search-clear" onClick={() => onChange('')} aria-label="Limpar pesquisa">
+          <X size={18} />
+        </button>
+      )}
+    </div>
   )
 }
 

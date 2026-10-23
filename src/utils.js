@@ -28,6 +28,15 @@ export const STAT_LABELS = {
   speed: 'Velocidade',
 }
 
+export const STAT_SHORT = {
+  hp: 'HP',
+  attack: 'ATK',
+  defense: 'DEF',
+  specialAttack: 'SpA',
+  specialDefense: 'SpD',
+  speed: 'SPE',
+}
+
 export const formatId = (id) => `#${String(id).padStart(3, '0')}`
 
 // Imagens: PokéAPI sprites (fonte documentada no README)

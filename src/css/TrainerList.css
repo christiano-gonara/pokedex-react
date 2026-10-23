@@ -1,52 +1,85 @@
 .trainer-list {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-  gap: 1rem;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 1.25rem;
 }
 
 .trainer-card {
+  --card-color: #999;
   background: var(--surface);
-  border-radius: 14px;
-  padding: 1rem;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1.25rem;
+  transition: box-shadow 0.25s, transform 0.25s;
+  animation: fade-up 0.4s ease-out both;
+}
+
+.trainer-card:hover {
+  transform: translateY(-4px);
   box-shadow: var(--shadow);
 }
 
-.trainer-card h3 {
-  margin: 0;
-}
-
-.trainer-pokemon {
+.trainer-header {
   display: flex;
-  flex-wrap: wrap;
-  gap: 0.4rem;
+  align-items: center;
+  gap: 0.85rem;
+  margin-bottom: 1rem;
 }
 
-.trainer-pokemon button {
+.avatar {
+  display: grid;
+  place-items: center;
+  width: 48px;
+  height: 48px;
+  border-radius: 14px;
+  background: linear-gradient(140deg, var(--card-color), color-mix(in srgb, var(--card-color) 55%, #000));
+  color: #fff;
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 1.3rem;
+}
+
+.trainer-header h3 {
+  margin: 0;
+  font-size: var(--fs-heading);
+}
+
+.badges {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  margin-top: 0.15rem;
+  font-size: var(--fs-label);
+  color: var(--muted);
+}
+
+.trainer-team {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(76px, 1fr));
+  gap: 0.5rem;
+}
+
+.trainer-team button {
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 78px;
-  background: var(--bg);
-  color: var(--text);
-  border: none;
-  border-radius: 10px;
-  padding: 0.3rem;
-  font-size: 0.7rem;
+  gap: 0.15rem;
+  padding: 0.4rem 0.2rem 0.5rem;
+  border: 1px solid transparent;
+  border-radius: 14px;
+  background: var(--surface-2);
+  font-size: var(--fs-small);
+  font-weight: 500;
+  transition: border-color 0.2s, transform 0.2s;
 }
 
-.trainer-pokemon button:hover {
-  outline: 2px solid var(--accent);
+.trainer-team button:hover {
+  border-color: var(--card-color);
+  transform: translateY(-2px);
 }
 
-.trainer-pokemon img {
+.trainer-team img {
   width: 56px;
   height: 56px;
   object-fit: contain;
-}
-
-.trainer-card h3,
-.trainer-card p {
-  display: flex;
-  align-items: center;
-  gap: 0.4rem;
 }
