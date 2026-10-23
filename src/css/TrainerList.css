@@ -8,137 +8,174 @@
   --card-color: #999;
   display: flex;
   flex-direction: column;
-  gap: 1rem;
-  padding: 1rem;
+  overflow: hidden;
   background: var(--surface);
   border: 1px solid var(--border);
-  border-radius: var(--radius);
-  transition: box-shadow 0.25s, transform 0.25s, border-color 0.25s;
+  border-radius: 24px;
+  transition: box-shadow 0.3s, transform 0.3s;
   animation: fade-up 0.4s ease-out both;
 }
 
 .trainer-card:hover {
-  transform: translateY(-4px);
-  box-shadow: var(--shadow);
-  border-color: color-mix(in srgb, var(--card-color) 45%, var(--border));
+  transform: translateY(-6px);
+  box-shadow: 0 22px 40px -18px color-mix(in srgb, var(--card-color) 70%, transparent);
 }
 
-/* ----- Cabeçalho: retrato + informações ----- */
-.trainer-header {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-}
-
-.portrait {
+/* ----- Topo colorido ----- */
+.trainer-hero {
   position: relative;
-  flex-shrink: 0;
-  display: grid;
-  place-items: end center;
-  width: 108px;
-  height: 108px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  min-height: 176px;
+  padding: 1.1rem 0 0 1.2rem;
   overflow: hidden;
-  border-radius: 18px;
-  background: color-mix(in srgb, var(--card-color) 16%, var(--surface));
+  color: #fff;
+  background:
+    repeating-linear-gradient(-45deg, rgba(255, 255, 255, 0.06) 0 2px, transparent 2px 14px),
+    radial-gradient(circle at 80% 100%, rgba(255, 255, 255, 0.3), transparent 50%),
+    linear-gradient(140deg, color-mix(in srgb, var(--card-color) 78%, #1a1a1a), color-mix(in srgb, var(--card-color) 40%, #0b0b10));
   isolation: isolate;
 }
 
-/* Pokébola decorativa ao fundo do retrato */
-.portrait::before {
+/* Pokébola gigante de marca d'água */
+.trainer-hero::before {
   content: '';
   position: absolute;
-  inset: 14px;
+  top: -40px;
+  right: -50px;
   z-index: -1;
+  width: 230px;
+  height: 230px;
   border-radius: 50%;
-  border: 6px solid color-mix(in srgb, var(--card-color) 22%, transparent);
+  border: 14px solid rgba(255, 255, 255, 0.1);
   background:
-    radial-gradient(circle, transparent 0 9px, color-mix(in srgb, var(--card-color) 22%, transparent) 9px 15px, transparent 15px),
-    linear-gradient(
-      transparent calc(50% - 3px),
-      color-mix(in srgb, var(--card-color) 22%, transparent) calc(50% - 3px) calc(50% + 3px),
-      transparent calc(50% + 3px)
-    );
+    radial-gradient(circle, transparent 0 22px, rgba(255, 255, 255, 0.1) 22px 36px, transparent 36px),
+    linear-gradient(transparent calc(50% - 7px), rgba(255, 255, 255, 0.1) calc(50% - 7px) calc(50% + 7px), transparent calc(50% + 7px));
 }
 
-.portrait img {
-  width: 120px;
-  height: 120px;
-  margin-bottom: -6px;
-  image-rendering: pixelated;
-  transition: transform 0.3s;
+/* Sombra onde o treinador pisa */
+.trainer-hero::after {
+  content: '';
+  position: absolute;
+  right: 18px;
+  bottom: 8px;
+  z-index: -1;
+  width: 110px;
+  height: 18px;
+  border-radius: 50%;
+  background: radial-gradient(ellipse, rgba(0, 0, 0, 0.35), transparent 70%);
 }
 
-.trainer-card:hover .portrait img {
-  transform: translateY(-3px);
-}
-
-.trainer-info {
+.hero-info {
   display: flex;
   flex-direction: column;
-  gap: 0.3rem;
+  gap: 0.35rem;
+  padding-bottom: 1.1rem;
   min-width: 0;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.35);
 }
 
-.trainer-info h3 {
-  margin: 0;
-  font-size: var(--fs-heading);
-}
-
-.badges {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.3rem;
-  font-size: var(--fs-label);
-  color: var(--muted);
-}
-
-.trainer-tags {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  margin-top: 0.2rem;
-}
-
-.difficulty {
+.hero-kicker {
   font-size: var(--fs-small);
   font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 0.05em;
+  letter-spacing: 0.1em;
+  opacity: 0.85;
 }
 
-.difficulty.fácil {
-  color: #16a34a;
+.hero-info h3 {
+  margin: 0;
+  font-size: var(--fs-title);
+  font-weight: 800;
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.25);
 }
 
-.difficulty.médio {
-  color: #d97706;
+.medals {
+  display: flex;
+  gap: 2px;
+  margin-top: 0.15rem;
 }
 
-.difficulty.difícil {
-  color: var(--accent);
+.medal {
+  color: rgba(255, 255, 255, 0.28);
+}
+
+.medal.on {
+  color: #ffd84d;
+  filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.35));
+}
+
+.hero-meta {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 0.35rem;
+}
+
+.level,
+.power {
+  padding: 0.25rem 0.65rem;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.18);
+  backdrop-filter: blur(6px);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  font-size: var(--fs-small);
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.level::before {
+  content: '';
+  display: inline-block;
+  width: 7px;
+  height: 7px;
+  margin-right: 0.35rem;
+  border-radius: 50%;
+  background: currentColor;
+  vertical-align: 1px;
+}
+
+.level.fácil::before {
+  background: #4ade80;
+}
+
+.level.médio::before {
+  background: #fbbf24;
+}
+
+.level.difícil::before {
+  background: #f87171;
+}
+
+.hero-portrait {
+  flex-shrink: 0;
+  width: 150px;
+  height: 150px;
+  margin: 0 0.25rem -4px 0;
+  image-rendering: pixelated;
+  filter: drop-shadow(0 6px 8px rgba(0, 0, 0, 0.3));
+  transition: transform 0.35s cubic-bezier(0.3, 1.6, 0.5, 1);
+}
+
+.trainer-card:hover .hero-portrait {
+  transform: translateY(-6px) scale(1.04);
 }
 
 /* ----- Equipe ----- */
-.trainer-team-header {
-  display: flex;
-  justify-content: space-between;
-  padding-top: 0.85rem;
-  border-top: 1px solid var(--border);
-  font-size: var(--fs-small);
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.06em;
-  color: var(--muted);
-}
-
-.trainer-team-header strong {
-  color: var(--text);
-}
-
 .trainer-team {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 0.5rem;
+  padding: 1rem;
+}
+
+.trainer-team button,
+.empty-slot {
+  aspect-ratio: 1 / 0.9;
+  border-radius: 16px;
 }
 
 .trainer-team button {
@@ -146,12 +183,13 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
   gap: 0.1rem;
-  padding: 0.45rem 0.3rem 0.55rem;
+  min-width: 0;
+  padding: 0.3rem;
   border: 1px solid transparent;
-  border-radius: 14px;
   background:
-    radial-gradient(circle at 50% 38%, color-mix(in srgb, var(--tile-color) 35%, transparent), transparent 65%),
+    radial-gradient(circle at 50% 40%, color-mix(in srgb, var(--tile-color) 38%, transparent), transparent 68%),
     color-mix(in srgb, var(--tile-color) 10%, var(--surface));
   font-size: var(--fs-small);
   font-weight: 600;
@@ -160,14 +198,19 @@
 
 .trainer-team button:hover {
   border-color: var(--tile-color);
-  transform: translateY(-2px);
+  transform: translateY(-3px);
 }
 
 .trainer-team img {
-  width: 58px;
-  height: 58px;
+  width: 62%;
+  aspect-ratio: 1;
   object-fit: contain;
   filter: drop-shadow(0 4px 5px rgba(0, 0, 0, 0.18));
+  transition: transform 0.25s;
+}
+
+.trainer-team button:hover img {
+  transform: scale(1.1);
 }
 
 .trainer-team span {
@@ -175,4 +218,24 @@
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+}
+
+/* Vaga vazia: Pokébola apagada */
+.empty-slot {
+  position: relative;
+  border: 2px dashed var(--border);
+}
+
+.empty-slot::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  margin: auto;
+  width: 34%;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  border: 3px solid var(--border);
+  background:
+    radial-gradient(circle, transparent 0 18%, var(--border) 18% 32%, transparent 32%),
+    linear-gradient(transparent calc(50% - 1.5px), var(--border) calc(50% - 1.5px) calc(50% + 1.5px), transparent calc(50% + 1.5px));
 }
