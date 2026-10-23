@@ -15,7 +15,14 @@ Pokédex interativa feita com **React + Vite** (Atividade 03 — Desenvolvimento
 - Detalhes em modal com barras de atributos
 - Área de treinadores (insígnias e Pokémon de cada um)
 - Mensagem quando nada é encontrado
-- Extras: favoritos (salvos no `localStorage`), ordenação, Pokémon aleatório, modo escuro, layout responsivo
+- Extras: favoritos, ordenação, Pokémon aleatório, modo escuro, layout responsivo
+- **Meu time:** monte um time de até 6 Pokémon (pelo card, pelo modal de detalhes ou aleatório)
+- **Batalhas:** desafie qualquer treinador numa batalha automática e animada, com vantagem de tipo, acerto crítico e barras de HP; os treinadores vencidos ficam marcados
+- Favoritos, time e vitórias ficam salvos no `localStorage`
+
+## Como funciona a batalha
+
+A lógica fica em `src/battle.js`. Cada lado envia um Pokémon por vez e quem tem mais **Speed** ataca primeiro. O golpe usa o maior entre **Attack** e **Special Attack**, contra a **Defense** ou a **Special Defense** do adversário. O tipo do golpe é escolhido entre os tipos do atacante, buscando a maior vantagem pela tabela de tipos. O HP de batalha é `HP + 60`. Vence quem nocautear o time inteiro do outro.
 
 ## Como executar
 
@@ -44,10 +51,12 @@ Imagens carregadas da [PokéAPI sprites](https://github.com/PokeAPI/sprites) (`o
 src/
 ├── assets/images/   # imagens locais (opcional)
 ├── components/      # Header, SearchBar, Filters, PokemonList, PokemonCard,
-│                    # PokemonDetails, StatBar, TypeBadge, TrainerList
+│                    # PokemonDetails, StatBar, TypeBadge, TypeFilter,
+│                    # TrainerList, TeamView, BattleArena, Toast
 ├── css/             # estilos por componente
 ├── data/            # pokedex-data.json
-├── App.jsx          # estado global (busca, filtro, ordenação, favoritos)
+├── App.jsx          # estado global (busca, filtro, favoritos, time, batalha)
+├── battle.js        # simulação da batalha e tabela de tipos
 ├── main.jsx
 ├── index.css
 └── utils.js         # cores dos tipos, rótulos e URL das imagens

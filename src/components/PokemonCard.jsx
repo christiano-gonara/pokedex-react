@@ -1,25 +1,39 @@
-import { Star } from 'lucide-react'
+import { Check, Plus, Star } from 'lucide-react'
 import '../css/PokemonCard.css'
 import TypeBadge from './TypeBadge'
 import { STAT_SHORT, TYPE_COLORS, formatId, imageUrl } from '../utils'
 
-function PokemonCard({ pokemon, isFavorite, onSelect, onToggleFavorite }) {
+function PokemonCard({ pokemon, isFavorite, inTeam, onSelect, onToggleFavorite, onToggleTeam }) {
   const color = TYPE_COLORS[pokemon.types[0]?.name] ?? TYPE_COLORS.Typeless
 
   return (
     <article className="pokemon-card" style={{ '--card-color': color }} onClick={() => onSelect(pokemon)}>
       <div className="card-top">
         <span className="card-watermark">{formatId(pokemon.id)}</span>
-        <button
-          className={isFavorite ? 'fav-btn active' : 'fav-btn'}
-          aria-label="Favoritar"
-          onClick={(e) => {
-            e.stopPropagation()
-            onToggleFavorite(pokemon.id)
-          }}
-        >
-          <Star size={18} fill={isFavorite ? 'currentColor' : 'none'} />
-        </button>
+        <div className="card-actions">
+          <button
+            className={isFavorite ? 'card-action fav active' : 'card-action fav'}
+            aria-label="Favoritar"
+            title="Favoritar"
+            onClick={(e) => {
+              e.stopPropagation()
+              onToggleFavorite(pokemon.id)
+            }}
+          >
+            <Star size={17} fill={isFavorite ? 'currentColor' : 'none'} />
+          </button>
+          <button
+            className={inTeam ? 'card-action team active' : 'card-action team'}
+            aria-label={inTeam ? 'Remover do time' : 'Adicionar ao time'}
+            title={inTeam ? 'Remover do time' : 'Adicionar ao time'}
+            onClick={(e) => {
+              e.stopPropagation()
+              onToggleTeam(pokemon)
+            }}
+          >
+            {inTeam ? <Check size={17} /> : <Plus size={17} />}
+          </button>
+        </div>
         <img src={imageUrl(pokemon.id)} alt={pokemon.name} loading="lazy" />
       </div>
       <div className="card-body">

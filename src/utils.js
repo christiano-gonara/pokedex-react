@@ -42,3 +42,15 @@ export const formatId = (id) => `#${String(id).padStart(3, '0')}`
 // Imagens: PokéAPI sprites (fonte documentada no README)
 export const imageUrl = (id) =>
   `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${id}.png`
+
+export const totalStats = (pokemon) => Object.values(pokemon.stats).reduce((a, b) => a + b, 0)
+
+export const TEAM_SIZE = 6
+
+export function difficultyOf(team) {
+  if (team.length === 0) return 'Fácil'
+  const avg = team.reduce((sum, p) => sum + totalStats(p), 0) / team.length
+  if (avg < 380) return 'Fácil'
+  if (avg < 470) return 'Médio'
+  return 'Difícil'
+}

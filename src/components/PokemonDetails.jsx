@@ -1,11 +1,11 @@
 import { useEffect } from 'react'
-import { Users, X } from 'lucide-react'
+import { Check, Plus, Users, X } from 'lucide-react'
 import '../css/PokemonDetails.css'
 import StatBar from './StatBar'
 import TypeBadge from './TypeBadge'
 import { STAT_LABELS, TYPE_COLORS, formatId, imageUrl } from '../utils'
 
-function PokemonDetails({ pokemon, trainers, onClose }) {
+function PokemonDetails({ pokemon, trainers, inTeam, onToggleTeam, onClose }) {
   useEffect(() => {
     const onKey = (e) => e.key === 'Escape' && onClose()
     window.addEventListener('keydown', onKey)
@@ -38,6 +38,11 @@ function PokemonDetails({ pokemon, trainers, onClose }) {
               <TypeBadge key={t.id} name={t.name} />
             ))}
           </div>
+
+          <button className={inTeam ? 'team-toggle in-team' : 'team-toggle'} onClick={() => onToggleTeam(pokemon)}>
+            {inTeam ? <Check size={18} /> : <Plus size={18} />}
+            {inTeam ? 'No seu time' : 'Adicionar ao time'}
+          </button>
 
           <h4 className="section-title">Atributos base</h4>
           {Object.entries(pokemon.stats).map(([key, value]) => (

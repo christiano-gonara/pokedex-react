@@ -142,3 +142,32 @@
     transform: translateY(-8px);
   }
 }
+
+.team-toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.45rem;
+  width: 100%;
+  margin-top: 1.1rem;
+  padding: 13px 18px;
+  border: none;
+  border-radius: 999px;
+  background: var(--card-color);
+  color: #fff;
+  font-size: var(--fs-button);
+  font-weight: 700;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.25);
+  transition: transform 0.15s, box-shadow 0.2s;
+}
+
+.team-toggle:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 10px 22px -8px var(--card-color);
+}
+
+.team-toggle.in-team {
+  background: var(--surface-2);
+  color: var(--text);
+  text-shadow: none;
+}
