@@ -2,6 +2,7 @@ import { useCallback, useEffect, useMemo, useState } from 'react'
 import './css/App.css'
 import data from './data/pokedex-data.json'
 import Header from './components/Header'
+import Footer from './components/Footer'
 import SearchBar from './components/SearchBar'
 import Filters from './components/Filters'
 import PokemonList from './components/PokemonList'
@@ -117,6 +118,7 @@ function App() {
           </>
         )}
       </main>
+      <Footer />
 
       {selected && <PokemonDetails pokemon={selected} trainers={trainers} onClose={closeDetails} />}
     </div>

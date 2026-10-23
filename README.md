@@ -46,7 +46,7 @@ src/
 ├── assets/images/   # imagens locais (opcional)
 ├── components/      # Header, SearchBar, Filters, PokemonList, PokemonCard,
 │                    # PokemonDetails, StatBar, TypeBadge, TypeFilter,
-│                    # TrainerList
+│                    # TrainerList, Footer
 ├── css/             # estilos por componente
 ├── data/            # pokedex-data.json
 ├── App.jsx          # estado global (busca, filtro, ordenação, favoritos)
